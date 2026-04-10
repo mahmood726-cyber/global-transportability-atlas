@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval
+from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -35,6 +35,13 @@ def run_pipeline():
     
     results = []
     for c in countries:
+        target_covs = {
+            "pop_65plus": c['pop_65plus_pct'],
+            "urbanization": c['urbanization'],
+            "health_exp": c['health_exp_gdp'],
+            "beds": c['hospital_beds_per_1000']
+        }
+        
         smds = [
             calculate_smd(c['pop_65plus_pct'], source_stats['pop_65plus_pct'], 5.0),
             calculate_smd(c['urbanization'], source_stats['urbanization'], 20.0),
@@ -46,34 +53,33 @@ def run_pipeline():
         causal_hr = causal_transport_hr(original_hr, smds, coeffs)
         dml_hr = dml_transport_hr(original_hr, smds, coeffs)
         
-        # Standard Wald-type uncertainty
-        drift_mag = np.abs(np.sum(smds))
-        se = 0.05 + 0.02 * drift_mag
-        wald_ci = [np.exp(np.log(dml_hr) - 1.96*se), np.exp(np.log(dml_hr) + 1.96*se)]
-        
-        # 2026 Novel Conformal Prediction Interval (CPI)
+        # 2026 Conformal Interval
         conformal_ci = conformal_hr_interval(dml_hr, smds, alpha=0.05)
         
+        # 2026 Wasserstein Distance (OT Alignment)
+        w2_dist = wasserstein_2_distance(target_covs, source_stats)
+        
+        # 2026 Proximal Bias Bound (Unmeasured Confounding)
+        prox_bound = proximal_bias_bound(dml_hr, smds)
+        
         # Propensity to transport (1 / (1 + drift))
+        drift_mag = np.abs(np.sum(smds))
         propensity = 1.0 / (1.0 + 0.2 * drift_mag)
         
         results.append({
             "iso3": c['iso3'],
             "smd_avg": float(np.mean(np.abs(smds))),
+            "wasserstein_dist": float(w2_dist),
             "transport_propensity": float(propensity),
             "hr_initial": original_hr,
             "recalibrated_hr": float(recalibrated),
             "causal_hr": float(causal_hr),
             "dml_hr": float(dml_hr),
-            "hr_ci": [float(wald_ci[0]), float(wald_ci[1])],
+            "hr_ci": [float(np.exp(np.log(dml_hr) - 1.96*0.05)), float(np.exp(np.log(dml_hr) + 1.96*0.05))], 
             "conformal_ci": [float(conformal_ci[0]), float(conformal_ci[1])],
+            "proximal_bound": [float(prox_bound[0]), float(prox_bound[1])],
             "readiness_score": c['readiness'],
-            "covariates": {
-                "pop_65plus": c['pop_65plus_pct'],
-                "urbanization": c['urbanization'],
-                "health_exp": c['health_exp_gdp'],
-                "beds": c['hospital_beds_per_1000']
-            }
+            "covariates": target_covs
         })
         
     output = {
