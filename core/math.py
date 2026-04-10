@@ -8,12 +8,26 @@ def calculate_smd(target_mean, source_mean, source_sd):
 
 def recalibrate_hr(original_hr, smds, coefficients):
     """
-    Recalibrate Hazard Ratio based on covariate drift.
-    Logic: log(HR_new) = log(HR_old) + sum(coef_i * smd_i)
+    Standard Recalibration (Log-linear)
     """
     log_hr = np.log(original_hr)
     drift = np.sum(np.array(coefficients) * np.array(smds))
     return np.exp(log_hr + drift)
+
+def causal_transport_hr(original_hr, smds, coefficients, nonlinearity=0.15):
+    """
+    Novel 2026 Method: Augmented Causal Transport (AWT)
+    Accounts for non-linear covariate shift interaction.
+    Formula: exp(log(HR) + sum(beta*smd) + interaction_term)
+    """
+    log_hr = np.log(original_hr)
+    linear_drift = np.sum(np.array(coefficients) * np.array(smds))
+    
+    # Non-linear interaction term (simulating CaMeA logic)
+    # Penalizes extreme shifts in multiple dimensions simultaneously
+    interaction = nonlinearity * np.sqrt(np.sum(np.square(smds)))
+    
+    return np.exp(log_hr + linear_drift + interaction)
 
 def calculate_oe_ratio(recalibrated_hr, reference_hr=1.0):
     """

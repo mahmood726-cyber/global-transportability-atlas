@@ -3,14 +3,7 @@ import numpy as np
 import datetime
 import os
 
-def calculate_smd(target, source, source_sd=1.0):
-    return (target - source) / source_sd
-
-def recalibrate_hr(original_hr, smds, coefficients):
-    log_hr = np.log(original_hr)
-    drift = np.sum(np.array(coefficients) * np.array(smds))
-    new_log_hr = log_hr + drift
-    return np.exp(new_log_hr)
+from core.math import calculate_smd, recalibrate_hr, causal_transport_hr
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -46,11 +39,12 @@ def run_pipeline():
         ]
         
         recalibrated = recalibrate_hr(original_hr, smds, coeffs)
+        causal_hr = causal_transport_hr(original_hr, smds, coeffs)
         
         # Calculate uncertainty (simplified SE based on drift magnitude)
         drift_mag = np.abs(np.sum(smds))
         se = 0.05 + 0.02 * drift_mag
-        ci = [np.exp(np.log(recalibrated) - 1.96*se), np.exp(np.log(recalibrated) + 1.96*se)]
+        ci = [np.exp(np.log(causal_hr) - 1.96*se), np.exp(np.log(causal_hr) + 1.96*se)]
         
         # Propensity to transport (1 / (1 + drift))
         propensity = 1.0 / (1.0 + 0.2 * drift_mag)
@@ -61,6 +55,7 @@ def run_pipeline():
             "transport_propensity": float(propensity),
             "hr_initial": original_hr,
             "recalibrated_hr": float(recalibrated),
+            "causal_hr": float(causal_hr),
             "hr_ci": [float(ci[0]), float(ci[1])],
             "readiness_score": c['readiness'],
             "covariates": {

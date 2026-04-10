@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }).addTo(map);
 
     const btnCompute = document.getElementById('btnCompute');
+    const causalToggle = document.getElementById('causalToggle');
     const globalScore = document.getElementById('globalScore');
     const centroids = { 
         'USA': [38, -97], 'IND': [20, 77], 'NGA': [9, 8], 
         'KEN': [0, 38], 'BRA': [-14, -51], 'CHN': [35, 105], 'ZAF': [-30, 25] 
     };
+
+    let appData = null;
+    let markers = [];
 
     const ctxForest = document.getElementById('forestChart').getContext('2d');
     const forestChart = new Chart(ctxForest, {
@@ -17,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             labels: [],
             datasets: [{
-                label: 'Recalibrated HR',
+                label: 'Hazard Ratio',
                 data: [],
                 backgroundColor: '#a855f7',
                 barThickness: 8
@@ -54,31 +58,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const updateDashboard = (data) => {
-        const sorted = [...data.map_data].sort((a, b) => a.recalibrated_hr - b.recalibrated_hr);
+    const updateDashboard = () => {
+        if (!appData) return;
+        const isCausal = causalToggle.checked;
+        const dataKey = isCausal ? 'causal_hr' : 'recalibrated_hr';
         
+        // Update Chart
+        const sorted = [...appData.map_data].sort((a, b) => a[dataKey] - b[dataKey]);
         forestChart.data.labels = sorted.map(d => d.iso3);
-        forestChart.data.datasets[0].data = sorted.map(d => d.recalibrated_hr);
+        forestChart.data.datasets[0].data = sorted.map(d => d[dataKey]);
+        forestChart.data.datasets[0].backgroundColor = isCausal ? '#10b981' : '#a855f7';
         forestChart.update();
 
-        const avgProp = data.map_data.reduce((s, d) => s + d.transport_propensity, 0) / data.map_data.length;
+        // Update Score
+        const avgProp = appData.map_data.reduce((s, d) => s + d.transport_propensity, 0) / appData.map_data.length;
         globalScore.textContent = (avgProp * 100).toFixed(0) + '%';
-        globalScore.style.color = avgProp > 0.7 ? '#10b981' : avgProp > 0.4 ? '#fbbf24' : '#ef4444';
+        
+        // Update Markers
+        markers.forEach(m => map.removeLayer(m));
+        markers = [];
 
-        data.map_data.forEach(c => {
+        appData.map_data.forEach(c => {
             const coord = centroids[c.iso3];
             if (!coord) return;
 
             let color = c.transport_propensity > 0.7 ? '#10b981' : c.transport_propensity > 0.4 ? '#fbbf24' : '#ef4444';
             
-            L.circleMarker(coord, {
+            const marker = L.circleMarker(coord, {
                 radius: 5 + (c.readiness_score / 10),
                 fillColor: color, color: color, weight: 1, fillOpacity: 0.6
             }).addTo(map)
               .bindPopup(`
-                <b>${c.iso3}</b><br>
+                <b style="color:${isCausal ? '#10b981' : '#a855f7'};">${c.iso3} | ${isCausal ? 'CaMeA' : 'Standard'}</b><br>
                 Propensity: ${(c.transport_propensity*100).toFixed(1)}%<br>
-                Recalibrated HR: ${c.recalibrated_hr.toFixed(2)}<br>
+                <b>HR: ${c[dataKey].toFixed(2)}</b><br>
                 95% CI: [${c.hr_ci[0].toFixed(2)}, ${c.hr_ci[1].toFixed(2)}]<br>
                 Health Readiness: ${c.readiness_score}%
               `).on('click', () => {
@@ -86,19 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
                   radarChart.data.datasets.push({
                       label: `${c.iso3} Target`,
                       data: [c.covariates.pop_65plus, c.covariates.urbanization, c.covariates.health_exp, c.covariates.beds],
-                      borderColor: '#a855f7',
-                      backgroundColor: 'rgba(168, 85, 247, 0.1)'
+                      borderColor: isCausal ? '#10b981' : '#a855f7',
+                      backgroundColor: isCausal ? 'rgba(16, 185, 129, 0.1)' : 'rgba(168, 85, 247, 0.1)'
                   });
                   radarChart.update();
               });
+            markers.push(marker);
         });
     };
 
     btnCompute.addEventListener('click', async () => {
         const resp = await fetch('data/atlas_results.json');
-        const data = await resp.json();
-        updateDashboard(data);
+        appData = await resp.json();
+        updateDashboard();
     });
+
+    causalToggle.addEventListener('change', updateDashboard);
 
     btnCompute.click();
 });
