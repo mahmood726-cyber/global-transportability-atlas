@@ -12,7 +12,8 @@ from core.math import (calculate_smd, recalibrate_hr, causal_transport_hr, dml_t
                        anytime_valid_e_stat, risk_difference_e_value, schoeners_d_overlap, 
                        eddington_bias_correction, fisher_information_stability, 
                        shapley_drift_attribution, topological_bottleneck_dist,
-                       quantum_von_neumann_entropy, cusp_catastrophe_potential, transport_free_energy)
+                       quantum_von_neumann_entropy, cusp_catastrophe_potential, transport_free_energy,
+                       avicennian_constancy_score, razian_dissonance, haythamian_verification_bound)
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -54,32 +55,25 @@ def run_pipeline():
             calculate_smd(c['hospital_beds_per_1000'], source_stats['hospital_beds_per_1000'], 1.0)
         ]
         
-        # Method Stack
-        recalibrated = recalibrate_hr(original_hr, smds, coeffs)
+        # Core Methods
         dml_hr = dml_transport_hr(original_hr, smds, coeffs)
         conformal_ci = conformal_hr_interval(dml_hr, smds, alpha=0.05)
-        w2_dist = wasserstein_2_distance(target_covs, source_stats)
+        propensity = 1.0 / (1.0 + 0.2 * np.abs(np.sum(smds)))
         
-        # EXOTIC: Quantum Entropy
-        q_entropy = quantum_von_neumann_entropy(smds)
-        
-        # EXOTIC: Cusp Potential
-        cusp_pot = cusp_catastrophe_potential(dml_hr, c['readiness'])
-        
-        # EXOTIC: Free Energy
-        conf_radius = np.abs(np.log(conformal_ci[1] / dml_hr))
-        free_energy = transport_free_energy(w2_dist, conf_radius)
+        # PHYSICIANS' STACK
+        constancy = avicennian_constancy_score(dml_hr, smds)
+        dissonance = razian_dissonance(c['readiness'])
+        v_bound = haythamian_verification_bound(dml_hr, propensity)
         
         results.append({
             "iso3": c['iso3'],
             "smd_avg": float(np.mean(np.abs(smds))),
-            "wasserstein_dist": float(w2_dist),
-            "quantum_entropy": float(q_entropy),
-            "cusp_potential": float(cusp_pot),
-            "free_energy": float(free_energy),
-            "transport_propensity": float(1.0 / (1.0 + 0.2 * np.abs(np.sum(smds)))),
+            "constancy_avicenna": float(constancy),
+            "dissonance_razi": float(dissonance),
+            "verification_bound_haytham": [float(v) for v in v_bound],
+            "transport_propensity": float(propensity),
             "hr_initial": original_hr,
-            "recalibrated_hr": float(recalibrated),
+            "recalibrated_hr": float(recalibrate_hr(original_hr, smds, coeffs)),
             "causal_hr": float(causal_transport_hr(original_hr, smds, coeffs)),
             "dml_hr": float(dml_hr),
             "hr_ci": [float(np.exp(np.log(dml_hr) - 1.96*0.05)), float(np.exp(np.log(dml_hr) + 1.96*0.05))], 
@@ -90,6 +84,9 @@ def run_pipeline():
             "fisher_stability": float(fisher_information_stability(smds)),
             "shapley_attribution": [float(v) for v in shapley_drift_attribution(dml_hr, smds, coeffs)],
             "tda_bottleneck": float(topological_bottleneck_dist(target_covs, source_stats)),
+            "quantum_entropy": float(quantum_von_neumann_entropy(smds)),
+            "cusp_potential": float(cusp_catastrophe_potential(dml_hr, c['readiness'])),
+            "free_energy": float(transport_free_energy(wasserstein_2_distance(target_covs, source_stats), np.abs(np.log(conformal_ci[1] / dml_hr)))),
             "readiness_score": c['readiness'],
             "covariates": target_covs
         })
@@ -98,7 +95,7 @@ def run_pipeline():
         "audit": {
             "ihme_version": "GBD 2023 (v1.0)",
             "timestamp": datetime.datetime.now().isoformat(),
-            "methodology": "TruthCert Transportability Pipeline (Exotic Stack)",
+            "methodology": "TruthCert Transportability Pipeline (Physicians' Wisdom Stack)",
             "hash": "SHA256:7d8c..."
         },
         "map_data": results
@@ -107,7 +104,7 @@ def run_pipeline():
     with open('data/atlas_results.json', 'w') as f:
         json.dump(output, f, indent=2)
     
-    print(f"Pipeline complete. {len(results)} countries processed with Exotic stats.")
+    print(f"Pipeline complete. {len(results)} countries processed with Physicians' Wisdom.")
 
 if __name__ == "__main__":
     run_pipeline()

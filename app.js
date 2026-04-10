@@ -91,10 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }).addTo(map)
               .bindPopup(`
                 <b style="color:${isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7')};">${c.iso3} | ${modeSelector.options[modeSelector.selectedIndex].text}</b><br>
-                Stability (Fisher): ${(c.fisher_stability * 100).toFixed(1)}%<br>
-                Q-Entropy: ${c.quantum_entropy.toFixed(3)} | Free Energy: ${c.free_energy.toFixed(3)}<br>
-                Cusp Potential (Chaos): ${c.cusp_potential.toFixed(4)}<br>
+                Constancy (Ibn Sina): ${(c.constancy_avicenna * 100).toFixed(1)}%<br>
+                Dissonance (Al-Razi): ${c.dissonance_razi.toFixed(3)}<br>
                 <b>HR: ${c[dataKey].toFixed(2)}</b> [${c.conformal_ci[0].toFixed(2)}, ${c.conformal_ci[1].toFixed(2)}]<br>
+                <i>Verification (Haytham): [${c.verification_bound_haytham[0].toFixed(2)}, ${c.verification_bound_haytham[1].toFixed(2)}]</i><br>
                 E-stat (Strength): ${c.e_statistic.toFixed(2)}<br>
                 <div style="font-size:0.65rem; color:#94a3b8; margin-top:0.25rem;">
                     Shapley Drift Attribution:<br>

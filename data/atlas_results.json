@@ -1,18 +1,20 @@
 {
   "audit": {
     "ihme_version": "GBD 2023 (v1.0)",
-    "timestamp": "2026-04-10T03:53:49.426569",
-    "methodology": "TruthCert Transportability Pipeline (Exotic Stack)",
+    "timestamp": "2026-04-10T04:03:28.520940",
+    "methodology": "TruthCert Transportability Pipeline (Physicians' Wisdom Stack)",
     "hash": "SHA256:7d8c..."
   },
   "map_data": [
     {
       "iso3": "USA",
       "smd_avg": 0.0,
-      "wasserstein_dist": 0.0,
-      "quantum_entropy": -0.0,
-      "cusp_potential": 0.0,
-      "free_energy": 0.0,
+      "constancy_avicenna": 1.0,
+      "dissonance_razi": 0.0,
+      "verification_bound_haytham": [
+        0.82,
+        0.82
+      ],
       "transport_propensity": 1.0,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.82,
@@ -40,6 +42,9 @@
         0.0
       ],
       "tda_bottleneck": 0.0,
+      "quantum_entropy": -0.0,
+      "cusp_potential": 0.0,
+      "free_energy": 0.0,
       "readiness_score": 95,
       "covariates": {
         "pop_65plus": 16.5,
@@ -51,10 +56,12 @@
     {
       "iso3": "IND",
       "smd_avg": 2.50375,
-      "wasserstein_dist": 52.39920800928197,
-      "quantum_entropy": 1.3629252859121346,
-      "cusp_potential": 0.0150247354767737,
-      "free_energy": 44.480564339306596,
+      "constancy_avicenna": 0.4319027095956365,
+      "dissonance_razi": 0.5,
+      "verification_bound_haytham": [
+        0.4509210236651666,
+        0.9021799846450959
+      ],
       "transport_propensity": 0.333000333000333,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.40081674997744,
@@ -82,6 +89,9 @@
         0.03089435965606851
       ],
       "tda_bottleneck": 47.0,
+      "quantum_entropy": 1.3629252859121346,
+      "cusp_potential": 0.0150247354767737,
+      "free_energy": 44.480564339306596,
       "readiness_score": 45,
       "covariates": {
         "pop_65plus": 6.8,
@@ -93,10 +103,12 @@
     {
       "iso3": "NGA",
       "smd_avg": 2.44625,
-      "wasserstein_dist": 37.26062264643466,
-      "quantum_entropy": 1.3506325031971316,
-      "cusp_potential": 0.01661374639748995,
-      "free_energy": 29.567286565563464,
+      "constancy_avicenna": 0.43899866599280374,
+      "dissonance_razi": 0.57,
+      "verification_bound_haytham": [
+        0.4452770406513458,
+        0.8857153366102458
+      ],
       "transport_propensity": 0.3381805884342239,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.38187920459384705,
@@ -124,6 +136,9 @@
         0.03141679454895053
       ],
       "tda_bottleneck": 30.0,
+      "quantum_entropy": 1.3506325031971316,
+      "cusp_potential": 0.01661374639748995,
+      "free_energy": 29.567286565563464,
       "readiness_score": 38,
       "covariates": {
         "pop_65plus": 2.7,
@@ -135,10 +150,12 @@
     {
       "iso3": "KEN",
       "smd_avg": 2.48125,
-      "wasserstein_dist": 59.8866178707731,
-      "quantum_entropy": 1.3495473718387259,
-      "cusp_potential": 0.016452429335955563,
-      "free_energy": 51.987871103456094,
+      "constancy_avicenna": 0.4325201054267756,
+      "dissonance_razi": 0.53,
+      "verification_bound_haytham": [
+        0.44615137082468,
+        0.8906233763890412
+      ],
       "transport_propensity": 0.3350083752093802,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.3850234880150954,
@@ -166,6 +183,9 @@
         0.018929299462033585
       ],
       "tda_bottleneck": 54.0,
+      "quantum_entropy": 1.3495473718387259,
+      "cusp_potential": 0.016452429335955563,
+      "free_energy": 51.987871103456094,
       "readiness_score": 42,
       "covariates": {
         "pop_65plus": 2.5,
@@ -177,10 +197,12 @@
     {
       "iso3": "BRA",
       "smd_avg": 1.0025,
-      "wasserstein_dist": 11.345571823403173,
-      "quantum_entropy": 1.2010179958819203,
-      "cusp_potential": 0.008423028225809042,
-      "free_energy": 9.726096392355238,
+      "constancy_avicenna": 0.7880189597361713,
+      "dissonance_razi": 0.23,
+      "verification_bound_haytham": [
+        0.5724481031192563,
+        0.8699007814240068
+      ],
       "transport_propensity": 0.5875440658049353,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.5953231338663968,
@@ -208,6 +230,9 @@
         0.013212272359985155
       ],
       "tda_bottleneck": 7.0,
+      "quantum_entropy": 1.2010179958819203,
+      "cusp_potential": 0.008423028225809042,
+      "free_energy": 9.726096392355238,
       "readiness_score": 72,
       "covariates": {
         "pop_65plus": 10.2,
@@ -219,10 +244,12 @@
     {
       "iso3": "CHN",
       "smd_avg": 1.4437499999999999,
-      "wasserstein_dist": 21.696405232203787,
-      "quantum_entropy": 1.2172010567853404,
-      "cusp_potential": 0.004851210376896815,
-      "free_energy": 18.29101723088891,
+      "constancy_avicenna": 0.6387098061914932,
+      "dissonance_razi": 0.1,
+      "verification_bound_haytham": [
+        0.6142120764104082,
+        0.8810517651836188
+      ],
       "transport_propensity": 0.6430868167202572,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.6341619352876683,
@@ -250,6 +277,9 @@
         0.017025841749343133
       ],
       "tda_bottleneck": 17.0,
+      "quantum_entropy": 1.2172010567853404,
+      "cusp_potential": 0.004851210376896815,
+      "free_energy": 18.29101723088891,
       "readiness_score": 85,
       "covariates": {
         "pop_65plus": 13.5,
@@ -261,10 +291,12 @@
     {
       "iso3": "ZAF",
       "smd_avg": 1.3624999999999998,
-      "wasserstein_dist": 21.13447420684981,
-      "quantum_entropy": 1.2270281401899095,
-      "cusp_potential": 0.014272691864286827,
-      "free_energy": 18.234974738518506,
+      "constancy_avicenna": 0.6749346157091032,
+      "dissonance_razi": 0.3,
+      "verification_bound_haytham": [
+        0.509193042782372,
+        0.8684295584022977
+      ],
       "transport_propensity": 0.47846889952153115,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.5099457463013164,
@@ -292,6 +324,9 @@
         0.009175630582988483
       ],
       "tda_bottleneck": 15.0,
+      "quantum_entropy": 1.2270281401899095,
+      "cusp_potential": 0.014272691864286827,
+      "free_energy": 18.234974738518506,
       "readiness_score": 65,
       "covariates": {
         "pop_65plus": 6.0,

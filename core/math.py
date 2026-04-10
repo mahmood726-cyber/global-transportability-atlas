@@ -257,6 +257,37 @@ def transport_free_energy(w2_dist, conformal_radius):
     free_energy = internal_energy - temperature * entropy
     return float(free_energy)
 
+def avicennian_constancy_score(dml_hr, smds):
+    """
+    Physician's Method (Ibn Sina): Al-Inbi'ath (Constancy).
+    Measures if the effect is 'constant' across perturbations.
+    A stability measure for the transported HR.
+    """
+    # Sensitivity to small fluctuations in temperament (covariates)
+    perturbation = 0.05 * np.sum(np.square(smds))
+    constancy = 1.0 / (1.0 + perturbation)
+    return float(constancy)
+
+def razian_dissonance(target_readiness, source_readiness=95):
+    """
+    Physician's Method (Al-Razi): Clinical Differentiation.
+    Penalizes transport between fundamentally different clinical environments.
+    Health systems with disparate 'tempers' cannot share evidence blindly.
+    """
+    dissonance = np.abs(target_readiness - source_readiness) / 100.0
+    return float(dissonance)
+
+def haythamian_verification_bound(dml_hr, transport_propensity):
+    """
+    Physician's Method (Ibn al-Haytham): I'tibar (Verification).
+    The 'Doubts' bound: tries to falsify the calibration.
+    As transport propensity drops, the verification bound expands.
+    """
+    falsification_risk = 1.0 - transport_propensity
+    lower = dml_hr * (1.0 - 0.5 * falsification_risk)
+    upper = dml_hr * (1.0 + 0.5 * falsification_risk)
+    return [float(lower), float(upper)]
+
 def calculate_oe_ratio(recalibrated_hr, reference_hr=1.0):
     """
     Observed-to-Expected (O:E) Ratio proxy.
