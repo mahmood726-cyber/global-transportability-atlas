@@ -91,8 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }).addTo(map)
               .bindPopup(`
                 <b style="color:${isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7')};">${c.iso3} | ${modeSelector.options[modeSelector.selectedIndex].text}</b><br>
-                W2 Alignment: ${c.wasserstein_dist.toFixed(4)}<br>
+                Niche Overlap (Ecol): ${(c.niche_overlap * 100).toFixed(1)}%<br>
                 <b>HR: ${c[dataKey].toFixed(2)}</b> [${c.conformal_ci[0].toFixed(2)}, ${c.conformal_ci[1].toFixed(2)}]<br>
+                <i>Eddington Corr (Astro): ${c.noise_corr_hr.toFixed(2)}</i><br>
                 E-stat (Strength): ${c.e_statistic.toFixed(2)}<br>
                 RD E-value (Abs Sens): ${c.rd_e_value.toFixed(2)}<br>
                 <b style="color:#f87171;">Proximal Bound: [${c.proximal_bound[0].toFixed(2)}, ${c.proximal_bound[1].toFixed(2)}]</b><br>

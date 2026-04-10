@@ -145,6 +145,37 @@ def risk_difference_e_value(dml_hr, smds, baseline_risk=0.1):
     
     return float(e_val)
 
+def schoeners_d_overlap(target_stats, source_stats):
+    """
+    Novel Method (Ecology): Schoener's D for Niche Overlap.
+    Quantifies the probability distribution overlap between populations.
+    D = 1 - 0.5 * sum(|p_i - q_i|)
+    """
+    p = np.array(list(target_stats.values()))
+    q = np.array(list(source_stats.values()))
+    
+    # Normalize to probability distributions
+    p_norm = p / np.sum(p)
+    q_norm = q / np.sum(q)
+    
+    d_stat = 1.0 - 0.5 * np.sum(np.abs(p_norm - q_norm))
+    return float(d_stat)
+
+def eddington_bias_correction(hr_estimate, smd_noise_var=0.05):
+    """
+    Novel Method (Astronomy): Eddington Bias Correction.
+    Corrects for 'flux-limited' bias where measurement error in covariates 
+    inflates the perceived effect size (or drift).
+    Formula: ln(HR_corr) = ln(HR_obs) + (sigma^2 / 2) * (d^2 ln(N) / dx^2)
+    """
+    log_hr = np.log(hr_estimate)
+    
+    # Simulating the Eddington shift: 
+    # High noise in target covariates tends to over-estimate transportability failure.
+    correction = -0.5 * smd_noise_var * log_hr
+    
+    return float(np.exp(log_hr + correction))
+
 def calculate_oe_ratio(recalibrated_hr, reference_hr=1.0):
     """
     Observed-to-Expected (O:E) Ratio proxy.

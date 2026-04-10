@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound, anytime_valid_e_stat, risk_difference_e_value
+from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound, anytime_valid_e_stat, risk_difference_e_value, schoeners_d_overlap, eddington_bias_correction
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -68,15 +68,20 @@ def run_pipeline():
         # 2026 Risk Difference E-value
         rd_e_value = risk_difference_e_value(dml_hr, smds)
         
-        # Propensity to transport
-        drift_mag = np.abs(np.sum(smds))
-        propensity = 1.0 / (1.0 + 0.2 * drift_mag)
+        # NEW (Ecology): Schoener's D Overlap
+        niche_overlap = schoeners_d_overlap(target_covs, source_stats)
+        
+        # NEW (Astronomy): Eddington-Corrected HR
+        noise_var = 0.1 if c['readiness'] < 50 else 0.02 # Higher noise for low-readiness systems
+        noise_corr_hr = eddington_bias_correction(dml_hr, smd_noise_var=noise_var)
         
         results.append({
             "iso3": c['iso3'],
             "smd_avg": float(np.mean(np.abs(smds))),
             "wasserstein_dist": float(w2_dist),
-            "transport_propensity": float(propensity),
+            "niche_overlap": float(niche_overlap),
+            "noise_corr_hr": float(noise_corr_hr),
+            "transport_propensity": float(1.0 / (1.0 + 0.2 * np.abs(np.sum(smds)))),
             "hr_initial": original_hr,
             "recalibrated_hr": float(recalibrated),
             "causal_hr": float(causal_hr),
@@ -94,7 +99,7 @@ def run_pipeline():
         "audit": {
             "ihme_version": "GBD 2023 (v1.0)",
             "timestamp": datetime.datetime.now().isoformat(),
-            "methodology": "TruthCert Transportability Pipeline",
+            "methodology": "TruthCert Transportability Pipeline (Cross-Disciplinary)",
             "hash": "SHA256:7d8c..."
         },
         "map_data": results
@@ -103,7 +108,7 @@ def run_pipeline():
     with open('data/atlas_results.json', 'w') as f:
         json.dump(output, f, indent=2)
     
-    print(f"Pipeline complete. {len(results)} countries processed.")
+    print(f"Pipeline complete. {len(results)} countries processed with cross-disciplinary lens.")
 
 if __name__ == "__main__":
     run_pipeline()
