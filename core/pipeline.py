@@ -3,6 +3,10 @@ import numpy as np
 import datetime
 import os
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from core.math import calculate_smd, recalibrate_hr, causal_transport_hr
 
 def run_pipeline():
