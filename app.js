@@ -91,13 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }).addTo(map)
               .bindPopup(`
                 <b style="color:${isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7')};">${c.iso3} | ${modeSelector.options[modeSelector.selectedIndex].text}</b><br>
-                Niche Overlap (Ecol): ${(c.niche_overlap * 100).toFixed(1)}%<br>
+                Stability (Fisher): ${(c.fisher_stability * 100).toFixed(1)}%<br>
+                TDA Bottleneck: ${c.tda_bottleneck.toFixed(2)}<br>
                 <b>HR: ${c[dataKey].toFixed(2)}</b> [${c.conformal_ci[0].toFixed(2)}, ${c.conformal_ci[1].toFixed(2)}]<br>
-                <i>Eddington Corr (Astro): ${c.noise_corr_hr.toFixed(2)}</i><br>
                 E-stat (Strength): ${c.e_statistic.toFixed(2)}<br>
-                RD E-value (Abs Sens): ${c.rd_e_value.toFixed(2)}<br>
-                <b style="color:#f87171;">Proximal Bound: [${c.proximal_bound[0].toFixed(2)}, ${c.proximal_bound[1].toFixed(2)}]</b><br>
-                Health Readiness: ${c.readiness_score}%
+                <div style="font-size:0.65rem; color:#94a3b8; margin-top:0.25rem;">
+                    Shapley Drift Attribution:<br>
+                    Age: ${c.shapley_attribution[0].toFixed(3)} | Urb: ${c.shapley_attribution[1].toFixed(3)}<br>
+                    Exp: ${c.shapley_attribution[2].toFixed(3)} | Beds: ${c.shapley_attribution[3].toFixed(3)}
+                </div>
+                <b style="color:#f87171;">Proximal Bound: [${c.proximal_bound[0].toFixed(2)}, ${c.proximal_bound[1].toFixed(2)}]</b>
               `).on('click', () => {
                   if(radarChart.data.datasets.length > 1) radarChart.data.datasets.pop();
                   radarChart.data.datasets.push({

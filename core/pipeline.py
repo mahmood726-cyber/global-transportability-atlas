@@ -7,7 +7,11 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound, anytime_valid_e_stat, risk_difference_e_value, schoeners_d_overlap, eddington_bias_correction
+from core.math import (calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, 
+                       conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound, 
+                       anytime_valid_e_stat, risk_difference_e_value, schoeners_d_overlap, 
+                       eddington_bias_correction, fisher_information_stability, 
+                       shapley_drift_attribution, topological_bottleneck_dist)
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -49,6 +53,7 @@ def run_pipeline():
             calculate_smd(c['hospital_beds_per_1000'], source_stats['hospital_beds_per_1000'], 1.0)
         ]
         
+        # Standard & Causal Recalibrations
         recalibrated = recalibrate_hr(original_hr, smds, coeffs)
         causal_hr = causal_transport_hr(original_hr, smds, coeffs)
         dml_hr = dml_transport_hr(original_hr, smds, coeffs)
@@ -68,12 +73,18 @@ def run_pipeline():
         # 2026 Risk Difference E-value
         rd_e_value = risk_difference_e_value(dml_hr, smds)
         
-        # NEW (Ecology): Schoener's D Overlap
+        # 2026 Ecology/Astronomy
         niche_overlap = schoeners_d_overlap(target_covs, source_stats)
+        noise_corr_hr = eddington_bias_correction(dml_hr, smd_noise_var=(0.1 if c['readiness'] < 50 else 0.02))
         
-        # NEW (Astronomy): Eddington-Corrected HR
-        noise_var = 0.1 if c['readiness'] < 50 else 0.02 # Higher noise for low-readiness systems
-        noise_corr_hr = eddington_bias_correction(dml_hr, smd_noise_var=noise_var)
+        # HYPER-ADVANCED: Fisher Stability
+        fisher_stability = fisher_information_stability(smds)
+        
+        # HYPER-ADVANCED: Shapley Attribution
+        shapley_values = shapley_drift_attribution(dml_hr, smds, coeffs)
+        
+        # HYPER-ADVANCED: TDA Bottleneck
+        tda_bottleneck = topological_bottleneck_dist(target_covs, source_stats)
         
         results.append({
             "iso3": c['iso3'],
@@ -81,6 +92,9 @@ def run_pipeline():
             "wasserstein_dist": float(w2_dist),
             "niche_overlap": float(niche_overlap),
             "noise_corr_hr": float(noise_corr_hr),
+            "fisher_stability": float(fisher_stability),
+            "shapley_attribution": [float(v) for v in shapley_values],
+            "tda_bottleneck": float(tda_bottleneck),
             "transport_propensity": float(1.0 / (1.0 + 0.2 * np.abs(np.sum(smds)))),
             "hr_initial": original_hr,
             "recalibrated_hr": float(recalibrated),
@@ -99,7 +113,7 @@ def run_pipeline():
         "audit": {
             "ihme_version": "GBD 2023 (v1.0)",
             "timestamp": datetime.datetime.now().isoformat(),
-            "methodology": "TruthCert Transportability Pipeline (Cross-Disciplinary)",
+            "methodology": "TruthCert Transportability Pipeline (Hyper-Advanced)",
             "hash": "SHA256:7d8c..."
         },
         "map_data": results
@@ -108,7 +122,7 @@ def run_pipeline():
     with open('data/atlas_results.json', 'w') as f:
         json.dump(output, f, indent=2)
     
-    print(f"Pipeline complete. {len(results)} countries processed with cross-disciplinary lens.")
+    print(f"Pipeline complete. {len(results)} countries processed with Hyper-Advanced stats.")
 
 if __name__ == "__main__":
     run_pipeline()
