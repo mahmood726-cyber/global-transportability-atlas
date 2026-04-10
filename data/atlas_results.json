@@ -1,8 +1,8 @@
 {
   "audit": {
     "ihme_version": "GBD 2023 (v1.0)",
-    "timestamp": "2026-04-10T03:26:40.202464",
-    "methodology": "TruthCert Transportability Pipeline (Hyper-Advanced)",
+    "timestamp": "2026-04-10T03:53:49.426569",
+    "methodology": "TruthCert Transportability Pipeline (Exotic Stack)",
     "hash": "SHA256:7d8c..."
   },
   "map_data": [
@@ -10,16 +10,9 @@
       "iso3": "USA",
       "smd_avg": 0.0,
       "wasserstein_dist": 0.0,
-      "niche_overlap": 1.0,
-      "noise_corr_hr": 0.8216289134599688,
-      "fisher_stability": 1.0,
-      "shapley_attribution": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "tda_bottleneck": 0.0,
+      "quantum_entropy": -0.0,
+      "cusp_potential": 0.0,
+      "free_energy": 0.0,
       "transport_propensity": 1.0,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.82,
@@ -39,6 +32,14 @@
       ],
       "e_statistic": 1.2195121951219512,
       "rd_e_value": 1.1341640786499874,
+      "fisher_stability": 1.0,
+      "shapley_attribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tda_bottleneck": 0.0,
       "readiness_score": 95,
       "covariates": {
         "pop_65plus": 16.5,
@@ -51,16 +52,9 @@
       "iso3": "IND",
       "smd_avg": 2.50375,
       "wasserstein_dist": 52.39920800928197,
-      "niche_overlap": 0.9120084558685972,
-      "noise_corr_hr": 0.689898516231602,
-      "fisher_stability": 0.27543106683403695,
-      "shapley_attribution": [
-        0.06254092980811086,
-        0.0252527809362647,
-        0.07360916996315454,
-        0.03089435965606851
-      ],
-      "tda_bottleneck": 47.0,
+      "quantum_entropy": 1.3629252859121346,
+      "cusp_potential": 0.0150247354767737,
+      "free_energy": 44.480564339306596,
       "transport_propensity": 0.333000333000333,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.40081674997744,
@@ -80,6 +74,14 @@
       ],
       "e_statistic": 1.215587706373126,
       "rd_e_value": 7.087930955641102,
+      "fisher_stability": 0.27543106683403695,
+      "shapley_attribution": [
+        0.06254092980811086,
+        0.0252527809362647,
+        0.07360916996315454,
+        0.03089435965606851
+      ],
+      "tda_bottleneck": 47.0,
       "readiness_score": 45,
       "covariates": {
         "pop_65plus": 6.8,
@@ -92,16 +94,9 @@
       "iso3": "NGA",
       "smd_avg": 2.44625,
       "wasserstein_dist": 37.26062264643466,
-      "niche_overlap": 0.8135593220338984,
-      "noise_corr_hr": 0.6791853254702463,
-      "fisher_stability": 0.2812288858625536,
-      "shapley_attribution": [
-        0.09048036830097754,
-        0.01639137106901767,
-        0.07048289559677597,
-        0.03141679454895053
-      ],
-      "tda_bottleneck": 30.0,
+      "quantum_entropy": 1.3506325031971316,
+      "cusp_potential": 0.01661374639748995,
+      "free_energy": 29.567286565563464,
       "transport_propensity": 0.3381805884342239,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.38187920459384705,
@@ -121,6 +116,14 @@
       ],
       "e_statistic": 1.2285367042974544,
       "rd_e_value": 6.970205567504187,
+      "fisher_stability": 0.2812288858625536,
+      "shapley_attribution": [
+        0.09048036830097754,
+        0.01639137106901767,
+        0.07048289559677597,
+        0.03141679454895053
+      ],
+      "tda_bottleneck": 30.0,
       "readiness_score": 38,
       "covariates": {
         "pop_65plus": 2.7,
@@ -133,16 +136,9 @@
       "iso3": "KEN",
       "smd_avg": 2.48125,
       "wasserstein_dist": 59.8866178707731,
-      "niche_overlap": 0.9131646157418157,
-      "noise_corr_hr": 0.681988144808765,
-      "fisher_stability": 0.2759334310597568,
-      "shapley_attribution": [
-        0.09086063741776121,
-        0.029205204884280397,
-        0.06544129242588753,
-        0.018929299462033585
-      ],
-      "tda_bottleneck": 54.0,
+      "quantum_entropy": 1.3495473718387259,
+      "cusp_potential": 0.016452429335955563,
+      "free_energy": 51.987871103456094,
       "transport_propensity": 0.3350083752093802,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.3850234880150954,
@@ -162,6 +158,14 @@
       ],
       "e_statistic": 1.2240951815193089,
       "rd_e_value": 7.048285208894097,
+      "fisher_stability": 0.2759334310597568,
+      "shapley_attribution": [
+        0.09086063741776121,
+        0.029205204884280397,
+        0.06544129242588753,
+        0.018929299462033585
+      ],
+      "tda_bottleneck": 54.0,
       "readiness_score": 42,
       "covariates": {
         "pop_65plus": 2.5,
@@ -174,16 +178,9 @@
       "iso3": "BRA",
       "smd_avg": 1.0025,
       "wasserstein_dist": 11.345571823403173,
-      "niche_overlap": 0.8952829012961117,
-      "noise_corr_hr": 0.723535632607309,
-      "fisher_stability": 0.6501908310089012,
-      "shapley_attribution": [
-        0.0570770165951359,
-        0.0037749349599957597,
-        0.05435906342393894,
-        0.013212272359985155
-      ],
-      "tda_bottleneck": 7.0,
+      "quantum_entropy": 1.2010179958819203,
+      "cusp_potential": 0.008423028225809042,
+      "free_energy": 9.726096392355238,
       "transport_propensity": 0.5875440658049353,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.5953231338663968,
@@ -203,6 +200,14 @@
       ],
       "e_statistic": 1.262779111967041,
       "rd_e_value": 3.506777017899994,
+      "fisher_stability": 0.6501908310089012,
+      "shapley_attribution": [
+        0.0570770165951359,
+        0.0037749349599957597,
+        0.05435906342393894,
+        0.013212272359985155
+      ],
+      "tda_bottleneck": 7.0,
       "readiness_score": 72,
       "covariates": {
         "pop_65plus": 10.2,
@@ -215,16 +220,9 @@
       "iso3": "CHN",
       "smd_avg": 1.4437499999999999,
       "wasserstein_dist": 21.696405232203787,
-      "niche_overlap": 0.9196990660671048,
-      "noise_corr_hr": 0.7498095323651329,
-      "fisher_stability": 0.46919445177560776,
-      "shapley_attribution": [
-        0.016344808079369402,
-        0.007718381593035552,
-        0.05130453647135395,
-        0.017025841749343133
-      ],
-      "tda_bottleneck": 17.0,
+      "quantum_entropy": 1.2172010567853404,
+      "cusp_potential": 0.004851210376896815,
+      "free_energy": 18.29101723088891,
       "transport_propensity": 0.6430868167202572,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.6341619352876683,
@@ -244,6 +242,14 @@
       ],
       "e_statistic": 1.202461285145103,
       "rd_e_value": 4.505072022477339,
+      "fisher_stability": 0.46919445177560776,
+      "shapley_attribution": [
+        0.016344808079369402,
+        0.007718381593035552,
+        0.05130453647135395,
+        0.017025841749343133
+      ],
+      "tda_bottleneck": 17.0,
       "readiness_score": 85,
       "covariates": {
         "pop_65plus": 13.5,
@@ -256,16 +262,9 @@
       "iso3": "ZAF",
       "smd_avg": 1.3624999999999998,
       "wasserstein_dist": 21.13447420684981,
-      "niche_overlap": 0.8896966993755575,
-      "noise_corr_hr": 0.6913838980982286,
-      "fisher_stability": 0.5093594804533299,
-      "shapley_attribution": [
-        0.0924903562765239,
-        0.011010756699586177,
-        0.06166023751768259,
-        0.009175630582988483
-      ],
-      "tda_bottleneck": 15.0,
+      "quantum_entropy": 1.2270281401899095,
+      "cusp_potential": 0.014272691864286827,
+      "free_energy": 18.234974738518506,
       "transport_propensity": 0.47846889952153115,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.5099457463013164,
@@ -285,6 +284,14 @@
       ],
       "e_statistic": 1.272885893276379,
       "rd_e_value": 4.3821101655901,
+      "fisher_stability": 0.5093594804533299,
+      "shapley_attribution": [
+        0.0924903562765239,
+        0.011010756699586177,
+        0.06166023751768259,
+        0.009175630582988483
+      ],
+      "tda_bottleneck": 15.0,
       "readiness_score": 65,
       "covariates": {
         "pop_65plus": 6.0,

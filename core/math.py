@@ -218,6 +218,45 @@ def topological_bottleneck_dist(target_stats, source_stats):
     dist = np.max(np.abs(np.sort(p) - np.sort(q)))
     return float(dist)
 
+def quantum_von_neumann_entropy(smds):
+    """
+    Exotic Method (Quantum): Von Neumann Entropy.
+    Treats the covariate shift as a density matrix to measure 'incoherence'.
+    High Entropy = Ambiguous transportability state.
+    """
+    # Create a simplified density matrix from normalized SMDs
+    eigenvalues = np.abs(smds) / np.sum(np.abs(smds))
+    # Filter out zeros for log calculation
+    eigenvalues = eigenvalues[eigenvalues > 0]
+    entropy = -np.sum(eigenvalues * np.log(eigenvalues))
+    return float(entropy)
+
+def cusp_catastrophe_potential(dml_hr, readiness_score):
+    """
+    Exotic Method (Chaos): Thom's Cusp Catastrophe.
+    Models the 'sudden collapse' of model calibration.
+    Potential: V(x) = 1/4 x^4 - 1/2 a x^2 - b x
+    """
+    x = dml_hr - 0.82 # State variable (deviation from baseline)
+    a = (100 - readiness_score) / 100.0 # Splitting factor (health system fragility)
+    b = np.abs(x) # Normal factor (direct drift)
+    
+    # Potential energy: low V = stable state, high V = near bifurcation
+    potential = 0.25 * x**4 - 0.5 * a * x**2 - b * x
+    return float(potential)
+
+def transport_free_energy(w2_dist, conformal_radius):
+    """
+    Exotic Method (Thermodynamics): Helmholtz Free Energy.
+    F = U - TS | U = internal energy (shift), S = entropy (uncertainty)
+    """
+    internal_energy = w2_dist
+    entropy = conformal_radius
+    temperature = 1.0 # Global 'noise' temperature
+    
+    free_energy = internal_energy - temperature * entropy
+    return float(free_energy)
+
 def calculate_oe_ratio(recalibrated_hr, reference_hr=1.0):
     """
     Observed-to-Expected (O:E) Ratio proxy.

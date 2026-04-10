@@ -11,7 +11,8 @@ from core.math import (calculate_smd, recalibrate_hr, causal_transport_hr, dml_t
                        conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound, 
                        anytime_valid_e_stat, risk_difference_e_value, schoeners_d_overlap, 
                        eddington_bias_correction, fisher_information_stability, 
-                       shapley_drift_attribution, topological_bottleneck_dist)
+                       shapley_drift_attribution, topological_bottleneck_dist,
+                       quantum_von_neumann_entropy, cusp_catastrophe_potential, transport_free_energy)
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -53,58 +54,42 @@ def run_pipeline():
             calculate_smd(c['hospital_beds_per_1000'], source_stats['hospital_beds_per_1000'], 1.0)
         ]
         
-        # Standard & Causal Recalibrations
+        # Method Stack
         recalibrated = recalibrate_hr(original_hr, smds, coeffs)
-        causal_hr = causal_transport_hr(original_hr, smds, coeffs)
         dml_hr = dml_transport_hr(original_hr, smds, coeffs)
-        
-        # 2026 Conformal Interval
         conformal_ci = conformal_hr_interval(dml_hr, smds, alpha=0.05)
-        
-        # 2026 Wasserstein Distance (OT Alignment)
         w2_dist = wasserstein_2_distance(target_covs, source_stats)
         
-        # 2026 Proximal Bias Bound
-        prox_bound = proximal_bias_bound(dml_hr, smds)
+        # EXOTIC: Quantum Entropy
+        q_entropy = quantum_von_neumann_entropy(smds)
         
-        # 2026 Anytime-Valid E-stat
-        e_stat = anytime_valid_e_stat(dml_hr, smds)
+        # EXOTIC: Cusp Potential
+        cusp_pot = cusp_catastrophe_potential(dml_hr, c['readiness'])
         
-        # 2026 Risk Difference E-value
-        rd_e_value = risk_difference_e_value(dml_hr, smds)
-        
-        # 2026 Ecology/Astronomy
-        niche_overlap = schoeners_d_overlap(target_covs, source_stats)
-        noise_corr_hr = eddington_bias_correction(dml_hr, smd_noise_var=(0.1 if c['readiness'] < 50 else 0.02))
-        
-        # HYPER-ADVANCED: Fisher Stability
-        fisher_stability = fisher_information_stability(smds)
-        
-        # HYPER-ADVANCED: Shapley Attribution
-        shapley_values = shapley_drift_attribution(dml_hr, smds, coeffs)
-        
-        # HYPER-ADVANCED: TDA Bottleneck
-        tda_bottleneck = topological_bottleneck_dist(target_covs, source_stats)
+        # EXOTIC: Free Energy
+        conf_radius = np.abs(np.log(conformal_ci[1] / dml_hr))
+        free_energy = transport_free_energy(w2_dist, conf_radius)
         
         results.append({
             "iso3": c['iso3'],
             "smd_avg": float(np.mean(np.abs(smds))),
             "wasserstein_dist": float(w2_dist),
-            "niche_overlap": float(niche_overlap),
-            "noise_corr_hr": float(noise_corr_hr),
-            "fisher_stability": float(fisher_stability),
-            "shapley_attribution": [float(v) for v in shapley_values],
-            "tda_bottleneck": float(tda_bottleneck),
+            "quantum_entropy": float(q_entropy),
+            "cusp_potential": float(cusp_pot),
+            "free_energy": float(free_energy),
             "transport_propensity": float(1.0 / (1.0 + 0.2 * np.abs(np.sum(smds)))),
             "hr_initial": original_hr,
             "recalibrated_hr": float(recalibrated),
-            "causal_hr": float(causal_hr),
+            "causal_hr": float(causal_transport_hr(original_hr, smds, coeffs)),
             "dml_hr": float(dml_hr),
             "hr_ci": [float(np.exp(np.log(dml_hr) - 1.96*0.05)), float(np.exp(np.log(dml_hr) + 1.96*0.05))], 
             "conformal_ci": [float(conformal_ci[0]), float(conformal_ci[1])],
-            "proximal_bound": [float(prox_bound[0]), float(prox_bound[1])],
-            "e_statistic": float(e_stat),
-            "rd_e_value": float(rd_e_value),
+            "proximal_bound": [float(v) for v in proximal_bias_bound(dml_hr, smds)],
+            "e_statistic": float(anytime_valid_e_stat(dml_hr, smds)),
+            "rd_e_value": float(risk_difference_e_value(dml_hr, smds)),
+            "fisher_stability": float(fisher_information_stability(smds)),
+            "shapley_attribution": [float(v) for v in shapley_drift_attribution(dml_hr, smds, coeffs)],
+            "tda_bottleneck": float(topological_bottleneck_dist(target_covs, source_stats)),
             "readiness_score": c['readiness'],
             "covariates": target_covs
         })
@@ -113,7 +98,7 @@ def run_pipeline():
         "audit": {
             "ihme_version": "GBD 2023 (v1.0)",
             "timestamp": datetime.datetime.now().isoformat(),
-            "methodology": "TruthCert Transportability Pipeline (Hyper-Advanced)",
+            "methodology": "TruthCert Transportability Pipeline (Exotic Stack)",
             "hash": "SHA256:7d8c..."
         },
         "map_data": results
@@ -122,7 +107,7 @@ def run_pipeline():
     with open('data/atlas_results.json', 'w') as f:
         json.dump(output, f, indent=2)
     
-    print(f"Pipeline complete. {len(results)} countries processed with Hyper-Advanced stats.")
+    print(f"Pipeline complete. {len(results)} countries processed with Exotic stats.")
 
 if __name__ == "__main__":
     run_pipeline()
