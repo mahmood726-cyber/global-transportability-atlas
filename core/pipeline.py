@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr
+from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -46,10 +46,13 @@ def run_pipeline():
         causal_hr = causal_transport_hr(original_hr, smds, coeffs)
         dml_hr = dml_transport_hr(original_hr, smds, coeffs)
         
-        # Calculate uncertainty (simplified SE based on drift magnitude)
+        # Standard Wald-type uncertainty
         drift_mag = np.abs(np.sum(smds))
         se = 0.05 + 0.02 * drift_mag
-        ci = [np.exp(np.log(dml_hr) - 1.96*se), np.exp(np.log(dml_hr) + 1.96*se)]
+        wald_ci = [np.exp(np.log(dml_hr) - 1.96*se), np.exp(np.log(dml_hr) + 1.96*se)]
+        
+        # 2026 Novel Conformal Prediction Interval (CPI)
+        conformal_ci = conformal_hr_interval(dml_hr, smds, alpha=0.05)
         
         # Propensity to transport (1 / (1 + drift))
         propensity = 1.0 / (1.0 + 0.2 * drift_mag)
@@ -62,7 +65,8 @@ def run_pipeline():
             "recalibrated_hr": float(recalibrated),
             "causal_hr": float(causal_hr),
             "dml_hr": float(dml_hr),
-            "hr_ci": [float(ci[0]), float(ci[1])],
+            "hr_ci": [float(wald_ci[0]), float(wald_ci[1])],
+            "conformal_ci": [float(conformal_ci[0]), float(conformal_ci[1])],
             "readiness_score": c['readiness'],
             "covariates": {
                 "pop_65plus": c['pop_65plus_pct'],

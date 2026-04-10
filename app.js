@@ -93,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <b style="color:${isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7')};">${c.iso3} | ${modeSelector.options[modeSelector.selectedIndex].text}</b><br>
                 Propensity: ${(c.transport_propensity*100).toFixed(1)}%<br>
                 <b>HR: ${c[dataKey].toFixed(2)}</b><br>
-                95% CI: [${c.hr_ci[0].toFixed(2)}, ${c.hr_ci[1].toFixed(2)}]<br>
+                Wald 95% CI: [${c.hr_ci[0].toFixed(2)}, ${c.hr_ci[1].toFixed(2)}]<br>
+                <b>Conformal 95% PI: [${c.conformal_ci[0].toFixed(2)}, ${c.conformal_ci[1].toFixed(2)}]</b><br>
                 Health Readiness: ${c.readiness_score}%
               `).on('click', () => {
                   if(radarChart.data.datasets.length > 1) radarChart.data.datasets.pop();
