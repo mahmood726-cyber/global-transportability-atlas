@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).addTo(map);
 
     const btnCompute = document.getElementById('btnCompute');
-    const causalToggle = document.getElementById('causalToggle');
+    const modeSelector = document.getElementById('analysisMode');
     const globalScore = document.getElementById('globalScore');
     const centroids = { 
         'USA': [38, -97], 'IND': [20, 77], 'NGA': [9, 8], 
@@ -60,14 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateDashboard = () => {
         if (!appData) return;
-        const isCausal = causalToggle.checked;
-        const dataKey = isCausal ? 'causal_hr' : 'recalibrated_hr';
+        const dataKey = modeSelector.value;
+        const isDML = dataKey === 'dml_hr';
+        const isCausal = dataKey === 'causal_hr';
         
         // Update Chart
         const sorted = [...appData.map_data].sort((a, b) => a[dataKey] - b[dataKey]);
         forestChart.data.labels = sorted.map(d => d.iso3);
         forestChart.data.datasets[0].data = sorted.map(d => d[dataKey]);
-        forestChart.data.datasets[0].backgroundColor = isCausal ? '#10b981' : '#a855f7';
+        forestChart.data.datasets[0].backgroundColor = isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7');
         forestChart.update();
 
         // Update Score
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fillColor: color, color: color, weight: 1, fillOpacity: 0.6
             }).addTo(map)
               .bindPopup(`
-                <b style="color:${isCausal ? '#10b981' : '#a855f7'};">${c.iso3} | ${isCausal ? 'CaMeA' : 'Standard'}</b><br>
+                <b style="color:${isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7')};">${c.iso3} | ${modeSelector.options[modeSelector.selectedIndex].text}</b><br>
                 Propensity: ${(c.transport_propensity*100).toFixed(1)}%<br>
                 <b>HR: ${c[dataKey].toFixed(2)}</b><br>
                 95% CI: [${c.hr_ci[0].toFixed(2)}, ${c.hr_ci[1].toFixed(2)}]<br>
@@ -99,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   radarChart.data.datasets.push({
                       label: `${c.iso3} Target`,
                       data: [c.covariates.pop_65plus, c.covariates.urbanization, c.covariates.health_exp, c.covariates.beds],
-                      borderColor: isCausal ? '#10b981' : '#a855f7',
-                      backgroundColor: isCausal ? 'rgba(16, 185, 129, 0.1)' : 'rgba(168, 85, 247, 0.1)'
+                      borderColor: isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7'),
+                      backgroundColor: 'rgba(168, 85, 247, 0.1)'
                   });
                   radarChart.update();
               });
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDashboard();
     });
 
-    causalToggle.addEventListener('change', updateDashboard);
+    modeSelector.addEventListener('change', updateDashboard);
 
     btnCompute.click();
 });

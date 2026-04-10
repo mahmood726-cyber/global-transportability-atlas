@@ -24,12 +24,13 @@
 
             <div class="controls">
                 <button id="btnCompute" class="btn-primary">Compute Atlas</button>
-                <div class="toggle-container">
-                    <label class="switch">
-                        <input type="checkbox" id="causalToggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="toggle-label">Causal Lens (CaMeA)</span>
+                <div class="mode-selector">
+                    <label for="analysisMode">Analysis Mode:</label>
+                    <select id="analysisMode">
+                        <option value="recalibrated_hr">Standard</option>
+                        <option value="causal_hr">Causal AWT</option>
+                        <option value="dml_hr">DML-Debiased</option>
+                    </select>
                 </div>
             </div>
 
