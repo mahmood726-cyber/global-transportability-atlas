@@ -1,7 +1,7 @@
 {
   "audit": {
     "ihme_version": "GBD 2023 (v1.0)",
-    "timestamp": "2026-04-10T02:57:06.681422",
+    "timestamp": "2026-04-10T03:01:56.042853",
     "methodology": "TruthCert Transportability Pipeline",
     "hash": "SHA256:7d8c..."
   },
@@ -27,6 +27,8 @@
         0.82,
         0.82
       ],
+      "e_statistic": 1.2195121951219512,
+      "rd_e_value": 1.1341640786499874,
       "readiness_score": 95,
       "covariates": {
         "pop_65plus": 16.5,
@@ -56,6 +58,8 @@
         0.4100409775281191,
         1.1162801031054843
       ],
+      "e_statistic": 1.215587706373126,
+      "rd_e_value": 7.087930955641102,
       "readiness_score": 45,
       "covariates": {
         "pop_65plus": 6.8,
@@ -85,6 +89,8 @@
         0.4080064204765907,
         1.0854858032988388
       ],
+      "e_statistic": 1.2285367042974544,
+      "rd_e_value": 6.970205567504187,
       "readiness_score": 38,
       "covariates": {
         "pop_65plus": 2.7,
@@ -114,6 +120,8 @@
         0.4069205290544473,
         1.097859776785313
       ],
+      "e_statistic": 1.2240951815193089,
+      "rd_e_value": 7.048285208894097,
       "readiness_score": 42,
       "covariates": {
         "pop_65plus": 2.5,
@@ -143,6 +151,8 @@
         0.5901525441681978,
         0.8812849852555553
       ],
+      "e_statistic": 1.262779111967041,
+      "rd_e_value": 3.506777017899994,
       "readiness_score": 72,
       "covariates": {
         "pop_65plus": 10.2,
@@ -172,6 +182,8 @@
         0.5601254476850644,
         0.9979076853314267
       ],
+      "e_statistic": 1.202461285145103,
+      "rd_e_value": 4.505072022477339,
       "readiness_score": 85,
       "covariates": {
         "pop_65plus": 13.5,
@@ -201,6 +213,8 @@
         0.5245115031166784,
         0.9045769349278873
       ],
+      "e_statistic": 1.272885893276379,
+      "rd_e_value": 4.3821101655901,
       "readiness_score": 65,
       "covariates": {
         "pop_65plus": 6.0,

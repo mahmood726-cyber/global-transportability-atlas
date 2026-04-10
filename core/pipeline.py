@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound
+from core.math import calculate_smd, recalibrate_hr, causal_transport_hr, dml_transport_hr, conformal_hr_interval, wasserstein_2_distance, proximal_bias_bound, anytime_valid_e_stat, risk_difference_e_value
 
 def run_pipeline():
     # Source Population (e.g., USA/Western Trial)
@@ -59,10 +59,16 @@ def run_pipeline():
         # 2026 Wasserstein Distance (OT Alignment)
         w2_dist = wasserstein_2_distance(target_covs, source_stats)
         
-        # 2026 Proximal Bias Bound (Unmeasured Confounding)
+        # 2026 Proximal Bias Bound
         prox_bound = proximal_bias_bound(dml_hr, smds)
         
-        # Propensity to transport (1 / (1 + drift))
+        # 2026 Anytime-Valid E-stat
+        e_stat = anytime_valid_e_stat(dml_hr, smds)
+        
+        # 2026 Risk Difference E-value
+        rd_e_value = risk_difference_e_value(dml_hr, smds)
+        
+        # Propensity to transport
         drift_mag = np.abs(np.sum(smds))
         propensity = 1.0 / (1.0 + 0.2 * drift_mag)
         
@@ -78,6 +84,8 @@ def run_pipeline():
             "hr_ci": [float(np.exp(np.log(dml_hr) - 1.96*0.05)), float(np.exp(np.log(dml_hr) + 1.96*0.05))], 
             "conformal_ci": [float(conformal_ci[0]), float(conformal_ci[1])],
             "proximal_bound": [float(prox_bound[0]), float(prox_bound[1])],
+            "e_statistic": float(e_stat),
+            "rd_e_value": float(rd_e_value),
             "readiness_score": c['readiness'],
             "covariates": target_covs
         })
