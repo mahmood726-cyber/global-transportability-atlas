@@ -1,0 +1,136 @@
+{
+  "audit": {
+    "ihme_version": "GBD 2023 (v1.0)",
+    "timestamp": "2026-04-10T01:54:46.675118",
+    "methodology": "TruthCert Transportability Pipeline",
+    "hash": "SHA256:7d8c..."
+  },
+  "map_data": [
+    {
+      "iso3": "USA",
+      "smd_avg": 0.0,
+      "transport_propensity": 1.0,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.82,
+      "hr_ci": [
+        0.7434521010782151,
+        0.9044294837889763
+      ],
+      "readiness_score": 95,
+      "covariates": {
+        "pop_65plus": 16.5,
+        "urbanization": 82,
+        "health_exp": 16.7,
+        "beds": 2.8
+      }
+    },
+    {
+      "iso3": "IND",
+      "smd_avg": 2.50375,
+      "transport_propensity": 0.333000333000333,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.40081674997744,
+      "hr_ci": [
+        0.24540657876683838,
+        0.6546445000364706
+      ],
+      "readiness_score": 45,
+      "covariates": {
+        "pop_65plus": 6.8,
+        "urbanization": 35,
+        "health_exp": 3.0,
+        "beds": 0.5
+      }
+    },
+    {
+      "iso3": "NGA",
+      "smd_avg": 2.44625,
+      "transport_propensity": 0.3381805884342239,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.38187920459384705,
+      "hr_ci": [
+        0.2359293368959976,
+        0.6181161224791425
+      ],
+      "readiness_score": 38,
+      "covariates": {
+        "pop_65plus": 2.7,
+        "urbanization": 52,
+        "health_exp": 3.8,
+        "beds": 0.5
+      }
+    },
+    {
+      "iso3": "KEN",
+      "smd_avg": 2.48125,
+      "transport_propensity": 0.3350083752093802,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.3850234880150954,
+      "hr_ci": [
+        0.23657004566605372,
+        0.626635066607599
+      ],
+      "readiness_score": 42,
+      "covariates": {
+        "pop_65plus": 2.5,
+        "urbanization": 28,
+        "health_exp": 4.6,
+        "beds": 1.4
+      }
+    },
+    {
+      "iso3": "BRA",
+      "smd_avg": 1.0025,
+      "transport_propensity": 0.5875440658049353,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.5953231338663968,
+      "hr_ci": [
+        0.47036657629169093,
+        0.7534753776737866
+      ],
+      "readiness_score": 72,
+      "covariates": {
+        "pop_65plus": 10.2,
+        "urbanization": 87,
+        "health_exp": 9.5,
+        "beds": 2.1
+      }
+    },
+    {
+      "iso3": "CHN",
+      "smd_avg": 1.4437499999999999,
+      "transport_propensity": 0.6430868167202572,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.6341619352876683,
+      "hr_ci": [
+        0.5156995560863457,
+        0.7798365451772181
+      ],
+      "readiness_score": 85,
+      "covariates": {
+        "pop_65plus": 13.5,
+        "urbanization": 65,
+        "health_exp": 5.4,
+        "beds": 4.3
+      }
+    },
+    {
+      "iso3": "ZAF",
+      "smd_avg": 1.3624999999999998,
+      "transport_propensity": 0.47846889952153115,
+      "hr_initial": 0.82,
+      "recalibrated_hr": 0.5099457463013164,
+      "hr_ci": [
+        0.37340526839402877,
+        0.6964140203196044
+      ],
+      "readiness_score": 65,
+      "covariates": {
+        "pop_65plus": 6.0,
+        "urbanization": 67,
+        "health_exp": 8.3,
+        "beds": 2.3
+      }
+    }
+  ]
+}

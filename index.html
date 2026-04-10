@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Transportability Atlas | GBD 2023</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <header>
+                <h1>Global Transportability Atlas</h1>
+                <p class="subtitle">GBD 2023 (1980-2023) Covariates</p>
+            </header>
+
+            <div class="stats-card">
+                <div class="label">GLOBAL TRANSPORTABILITY</div>
+                <div id="globalScore" class="value">--%</div>
+            </div>
+
+            <div class="controls">
+                <button id="btnCompute" class="btn-primary">Compute Atlas</button>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="forestChart"></canvas>
+            </div>
+
+            <div class="radar-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+
+            <footer class="sidebar-footer">
+                <p>TruthCert: GBD-2023-V1</p>
+            </footer>
+        </aside>
+
+        <main id="map" class="map-view"></main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
