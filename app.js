@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         markers = [];
 
         appData.map_data.forEach(c => {
-            const coord = centroids[c.iso3];
+            const coord = c.spatial_metrics.coordinates;
             if (!coord) return;
 
             let color = c.transport_propensity > 0.7 ? '#10b981' : c.transport_propensity > 0.4 ? '#fbbf24' : '#ef4444';
@@ -92,10 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
               .bindPopup(`
                 <b style="color:${isDML ? '#3b82f6' : (isCausal ? '#10b981' : '#a855f7')};">${c.iso3} | ${modeSelector.options[modeSelector.selectedIndex].text}</b><br>
                 Constancy (Ibn Sina): ${(c.constancy_avicenna * 100).toFixed(1)}%<br>
-                Dissonance (Al-Razi): ${c.dissonance_razi.toFixed(3)}<br>
+                Robustness (MC): ${(c.uncertainty.robustness_score * 100).toFixed(1)}%<br>
                 <b>HR: ${c[dataKey].toFixed(2)}</b> [${c.conformal_ci[0].toFixed(2)}, ${c.conformal_ci[1].toFixed(2)}]<br>
-                <i>Verification (Haytham): [${c.verification_bound_haytham[0].toFixed(2)}, ${c.verification_bound_haytham[1].toFixed(2)}]</i><br>
-                E-stat (Strength): ${c.e_statistic.toFixed(2)}<br>
+                <i>Verification: [${c.verification_bound_haytham[0].toFixed(2)}, ${c.verification_bound_haytham[1].toFixed(2)}]</i><br>
+                Spatial W2: ${c.spatial_metrics.wasserstein_2_weighted.toFixed(2)}<br>
                 <div style="font-size:0.65rem; color:#94a3b8; margin-top:0.25rem;">
                     Shapley Drift Attribution:<br>
                     Age: ${c.shapley_attribution[0].toFixed(3)} | Urb: ${c.shapley_attribution[1].toFixed(3)}<br>

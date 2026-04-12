@@ -1,9 +1,21 @@
 {
   "audit": {
     "ihme_version": "GBD 2023 (v1.0)",
-    "timestamp": "2026-04-10T04:03:28.520940",
-    "methodology": "TruthCert Transportability Pipeline (Physicians' Wisdom Stack)",
-    "hash": "SHA256:7d8c..."
+    "timestamp": "2026-04-12T04:45:28.455783",
+    "methodology": "TruthCert Transportability Pipeline V4 (Spatial & Micro-Paper Ready)",
+    "determinism_seed": 42,
+    "hash": "SHA256:f7c09271faf5113a7aab3ef54000e8cfdb9b488ace6a479365b746df8c7ec3dc",
+    "signatures": {
+      "input_data_hash": "SHA256:f21c868682abeb775237aab33ccf0496d5d029a23b17a03a1fedea79fe5aa882",
+      "output_data_hash": "SHA256:801bef7987881e902e09fbd8ec0ce3a49c46df413e69e83b53c0d88be32e9ad4",
+      "composition_hash": "SHA256:f7c09271faf5113a7aab3ef54000e8cfdb9b488ace6a479365b746df8c7ec3dc"
+    },
+    "hardening": {
+      "dml_cross_fitting": true,
+      "conformal_exchangeability": "Fixed Calibration Set (n=1000)",
+      "uncertainty_propagation": "Monte Carlo Stochastic Sensitivity (N=100)",
+      "spatial_awareness": "Spatially-Weighted Wasserstein-2 (Haversine)"
+    }
   },
   "map_data": [
     {
@@ -25,13 +37,18 @@
         0.9044294837889763
       ],
       "conformal_ci": [
-        0.82,
-        0.82
+        0.009596548557128808,
+        70.06685747455595
       ],
       "proximal_bound": [
         0.82,
         0.82
       ],
+      "uncertainty": {
+        "dml_hr_std": 1.8518691260127076e-07,
+        "robustness_score": 0.9999998148131216,
+        "mc_iterations": 100
+      },
       "e_statistic": 1.2195121951219512,
       "rd_e_value": 1.1341640786499874,
       "fisher_stability": 1.0,
@@ -42,15 +59,22 @@
         0.0
       ],
       "tda_bottleneck": 0.0,
-      "quantum_entropy": -0.0,
+      "quantum_entropy": 0.0,
       "cusp_potential": 0.0,
-      "free_energy": 0.0,
+      "free_energy": -4.4479008317283055,
       "readiness_score": 95,
       "covariates": {
         "pop_65plus": 16.5,
         "urbanization": 82,
         "health_exp": 16.7,
         "beds": 2.8
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 0.0,
+        "coordinates": [
+          38,
+          -97
+        ]
       }
     },
     {
@@ -59,45 +83,57 @@
       "constancy_avicenna": 0.4319027095956365,
       "dissonance_razi": 0.5,
       "verification_bound_haytham": [
-        0.4509210236651666,
-        0.9021799846450959
+        0.5459575501226024,
+        1.0923242615368278
       ],
       "transport_propensity": 0.333000333000333,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.40081674997744,
       "causal_hr": 0.8651090501876971,
-      "dml_hr": 0.6765505041551313,
+      "dml_hr": 0.8191409058297152,
       "hr_ci": [
-        0.6133937729264123,
-        0.7462100283295087
+        0.7426732042905051,
+        0.9034819348902485
       ],
       "conformal_ci": [
-        0.0002461937207862788,
-        1859.1887039633725
+        0.0022020204327733747,
+        304.71643842034354
       ],
       "proximal_bound": [
-        0.4100409775281191,
-        1.1162801031054843
+        0.0404473241891589,
+        16.58927597943234
       ],
-      "e_statistic": 1.215587706373126,
-      "rd_e_value": 7.087930955641102,
+      "uncertainty": {
+        "dml_hr_std": 0.00045381858437910076,
+        "robustness_score": 0.9995463872735062,
+        "mc_iterations": 100
+      },
+      "e_statistic": 1.1048116033735575,
+      "rd_e_value": 6.815411807187495,
       "fisher_stability": 0.27543106683403695,
       "shapley_attribution": [
-        0.06254092980811086,
-        0.0252527809362647,
-        0.07360916996315454,
-        0.03089435965606851
+        0.0003409147570658201,
+        0.00013765458403860434,
+        0.0004012484683678466,
+        0.0001684072038770159
       ],
       "tda_bottleneck": 47.0,
-      "quantum_entropy": 1.3629252859121346,
-      "cusp_potential": 0.0150247354767737,
-      "free_energy": 44.480564339306596,
+      "quantum_entropy": 1.349053931162194,
+      "cusp_potential": 5.350811614042742e-07,
+      "free_energy": 46.955983915520534,
       "readiness_score": 45,
       "covariates": {
         "pop_65plus": 6.8,
         "urbanization": 35,
         "health_exp": 3.0,
         "beds": 0.5
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 52.87486471331941,
+        "coordinates": [
+          20,
+          77
+        ]
       }
     },
     {
@@ -106,45 +142,57 @@
       "constancy_avicenna": 0.43899866599280374,
       "dissonance_razi": 0.57,
       "verification_bound_haytham": [
-        0.4452770406513458,
-        0.8857153366102458
+        0.5488028320193017,
+        1.0916419233823411
       ],
       "transport_propensity": 0.3381805884342239,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.38187920459384705,
       "causal_hr": 0.8151983742975406,
-      "dml_hr": 0.6654961886307958,
+      "dml_hr": 0.8202223777008214,
       "hr_ci": [
-        0.6033713898745237,
-        0.7340175296913194
+        0.7436537195768842,
+        0.9046747581172203
       ],
       "conformal_ci": [
-        0.0003033696742399958,
-        1459.886121418152
+        0.0022323547686948246,
+        301.3699965236842
       ],
       "proximal_bound": [
-        0.4080064204765907,
-        1.0854858032988388
+        0.045909399159067964,
+        14.654183265395789
       ],
-      "e_statistic": 1.2285367042974544,
-      "rd_e_value": 6.970205567504187,
+      "uncertainty": {
+        "dml_hr_std": 0.00029630284042475683,
+        "robustness_score": 0.9997037849289421,
+        "mc_iterations": 100
+      },
+      "e_statistic": 1.1053551471116174,
+      "rd_e_value": 6.68257333995979,
       "fisher_stability": 0.2812288858625536,
       "shapley_attribution": [
-        0.09048036830097754,
-        0.01639137106901767,
-        0.07048289559677597,
-        0.03141679454895053
+        0.00011751729763231561,
+        2.1289365513100654e-05,
+        9.15442717063328e-05,
+        4.0804617233442916e-05
       ],
       "tda_bottleneck": 30.0,
-      "quantum_entropy": 1.3506325031971316,
-      "cusp_potential": 0.01661374639748995,
-      "free_energy": 29.567286565563464,
+      "quantum_entropy": 1.3369273425222545,
+      "cusp_potential": -6.478191217628111e-08,
+      "free_energy": 31.817908521346872,
       "readiness_score": 38,
       "covariates": {
         "pop_65plus": 2.7,
         "urbanization": 52,
         "health_exp": 3.8,
         "beds": 0.5
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 37.724427038721,
+        "coordinates": [
+          9,
+          8
+        ]
       }
     },
     {
@@ -153,45 +201,57 @@
       "constancy_avicenna": 0.4325201054267756,
       "dissonance_razi": 0.53,
       "verification_bound_haytham": [
-        0.44615137082468,
-        0.8906233763890412
+        0.5464409101719265,
+        1.0908249536807217
       ],
       "transport_propensity": 0.3350083752093802,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.3850234880150954,
       "causal_hr": 0.8302180685724312,
-      "dml_hr": 0.6683873736068606,
+      "dml_hr": 0.8186329319263241,
       "hr_ci": [
-        0.6059926795636226,
-        0.7372063991247837
+        0.7422126503078599,
+        0.9029216585790019
       ],
       "conformal_ci": [
-        0.0002481110474035116,
-        1800.5715016410606
+        0.002203028447889107,
+        304.19937512673613
       ],
       "proximal_bound": [
-        0.4069205290544473,
-        1.097859776785313
+        0.042467758640950204,
+        15.780439059670023
       ],
-      "e_statistic": 1.2240951815193089,
-      "rd_e_value": 7.048285208894097,
+      "uncertainty": {
+        "dml_hr_std": 0.0005825739355678161,
+        "robustness_score": 0.9994177652592166,
+        "mc_iterations": 100
+      },
+      "e_statistic": 1.1056532972557556,
+      "rd_e_value": 6.765485324738794,
       "fisher_stability": 0.2759334310597568,
       "shapley_attribution": [
-        0.09086063741776121,
-        0.029205204884280397,
-        0.06544129242588753,
-        0.018929299462033585
+        0.0007415766394622485,
+        0.00023836391982715136,
+        0.0005341117462793575,
+        0.00015449513322130176
       ],
       "tda_bottleneck": 54.0,
-      "quantum_entropy": 1.3495473718387259,
-      "cusp_potential": 0.016452429335955563,
-      "free_energy": 51.987871103456094,
+      "quantum_entropy": 1.3358682245795088,
+      "cusp_potential": 1.3269022069987803e-06,
+      "free_energy": 54.44534169805444,
       "readiness_score": 42,
       "covariates": {
         "pop_65plus": 2.5,
         "urbanization": 28,
         "health_exp": 4.6,
         "beds": 1.4
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 60.36314450988741,
+        "coordinates": [
+          0,
+          38
+        ]
       }
     },
     {
@@ -200,45 +260,57 @@
       "constancy_avicenna": 0.7880189597361713,
       "dissonance_razi": 0.23,
       "verification_bound_haytham": [
-        0.5724481031192563,
-        0.8699007814240068
+        0.6505917644978381,
+        0.9886490692184025
       ],
       "transport_propensity": 0.5875440658049353,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.5953231338663968,
       "causal_hr": 0.843053128261852,
-      "dml_hr": 0.7211744422716315,
+      "dml_hr": 0.8196204168581203,
       "hr_ci": [
-        0.65385201750092,
-        0.7954285713969934
+        0.7431079524387464,
+        0.9040108177096284
       ],
       "conformal_ci": [
-        0.14279436978771443,
-        3.6422484791171787
+        0.004206633698757898,
+        159.69482389898522
       ],
       "proximal_bound": [
-        0.5901525441681978,
-        0.8812849852555553
+        0.448692961671438,
+        1.4971877990424058
       ],
-      "e_statistic": 1.262779111967041,
-      "rd_e_value": 3.506777017899994,
+      "uncertainty": {
+        "dml_hr_std": 0.00018003208958466488,
+        "robustness_score": 0.9998200003161346,
+        "mc_iterations": 100
+      },
+      "e_statistic": 1.1525535743386364,
+      "rd_e_value": 3.4085879266356653,
       "fisher_stability": 0.6501908310089012,
       "shapley_attribution": [
-        0.0570770165951359,
-        0.0037749349599957597,
-        0.05435906342393894,
-        0.013212272359985155
+        0.000205783753230371,
+        1.3610036589310248e-05,
+        0.00019598452688606756,
+        4.763512806258585e-05
       ],
       "tda_bottleneck": 7.0,
-      "quantum_entropy": 1.2010179958819203,
-      "cusp_potential": 0.008423028225809042,
-      "free_energy": 9.726096392355238,
+      "quantum_entropy": 1.1892122919328776,
+      "cusp_potential": 1.2391169616536554e-07,
+      "free_energy": 6.519592878693557,
       "readiness_score": 72,
       "covariates": {
         "pop_65plus": 10.2,
         "urbanization": 87,
         "health_exp": 9.5,
         "beds": 2.1
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 11.791771474155148,
+        "coordinates": [
+          -14,
+          -51
+        ]
       }
     },
     {
@@ -247,45 +319,57 @@
       "constancy_avicenna": 0.6387098061914932,
       "dissonance_razi": 0.1,
       "verification_bound_haytham": [
-        0.6142120764104082,
-        0.8810517651836188
+        0.6726011107411887,
+        0.9648074641355995
       ],
       "transport_propensity": 0.6430868167202572,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.6341619352876683,
       "causal_hr": 1.0502979644865258,
-      "dml_hr": 0.7476319207970135,
+      "dml_hr": 0.8187042874383941,
       "hr_ci": [
-        0.6778396614020504,
-        0.8246101855982972
+        0.742277344704655,
+        0.9030003610533274
       ],
       "conformal_ci": [
-        0.024816847843597084,
-        22.52314607065803
+        0.0031364854398125046,
+        213.70311551966824
       ],
       "proximal_bound": [
-        0.5601254476850644,
-        0.9979076853314267
+        0.2664555207710824,
+        2.5155294524591874
       ],
-      "e_statistic": 1.202461285145103,
-      "rd_e_value": 4.505072022477339,
+      "uncertainty": {
+        "dml_hr_std": 0.0004267928718006324,
+        "robustness_score": 0.9995733892026466,
+        "mc_iterations": 100
+      },
+      "e_statistic": 1.1351937895556021,
+      "rd_e_value": 4.4109366994720896,
       "fisher_stability": 0.46919445177560776,
       "shapley_attribution": [
-        0.016344808079369402,
-        0.007718381593035552,
-        0.05130453647135395,
-        0.017025841749343133
+        0.0002797539662779862,
+        0.0001321060396312713,
+        0.0008781166163725679,
+        0.00029141038153956907
       ],
       "tda_bottleneck": 17.0,
-      "quantum_entropy": 1.2172010567853404,
-      "cusp_potential": 0.004851210376896815,
-      "free_energy": 18.29101723088891,
+      "quantum_entropy": 1.2050509532759952,
+      "cusp_potential": 1.5529564187825137e-06,
+      "free_energy": 16.599671067401502,
       "readiness_score": 85,
       "covariates": {
         "pop_65plus": 13.5,
         "urbanization": 65,
         "health_exp": 5.4,
         "beds": 4.3
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 22.16429113428888,
+        "coordinates": [
+          35,
+          105
+        ]
       }
     },
     {
@@ -294,45 +378,57 @@
       "constancy_avicenna": 0.6749346157091032,
       "dissonance_razi": 0.3,
       "verification_bound_haytham": [
-        0.509193042782372,
-        0.8684295584022977
+        0.6060067731895008,
+        1.0335455322681775
       ],
       "transport_propensity": 0.47846889952153115,
       "hr_initial": 0.82,
       "recalibrated_hr": 0.5099457463013164,
       "causal_hr": 0.8122826549698975,
-      "dml_hr": 0.6888113005923349,
+      "dml_hr": 0.8197761527288392,
       "hr_ci": [
-        0.6245100105753529,
-        0.7597332305155351
+        0.7432491501952089,
+        0.9041825885793379
       ],
       "conformal_ci": [
-        0.03791959097673791,
-        12.512292342888564
+        0.0033524264010185534,
+        200.46165379759464
       ],
       "proximal_bound": [
-        0.5245115031166784,
-        0.9045769349278873
+        0.29707030219354746,
+        2.262201693069453
       ],
-      "e_statistic": 1.272885893276379,
-      "rd_e_value": 4.3821101655901,
+      "uncertainty": {
+        "dml_hr_std": 0.0002018259822074533,
+        "robustness_score": 0.9997982147433002,
+        "mc_iterations": 100
+      },
+      "e_statistic": 1.1372623451033705,
+      "rd_e_value": 4.225071846917211,
       "fisher_stability": 0.5093594804533299,
       "shapley_attribution": [
-        0.0924903562765239,
-        0.011010756699586177,
-        0.06166023751768259,
-        0.009175630582988483
+        0.0001448452200118755,
+        1.724347857284232e-05,
+        9.656348000791699e-05,
+        1.4369565477368602e-05
       ],
       "tda_bottleneck": 15.0,
-      "quantum_entropy": 1.2270281401899095,
-      "cusp_potential": 0.014272691864286827,
-      "free_energy": 18.234974738518506,
+      "quantum_entropy": 1.2148585433213557,
+      "cusp_potential": 4.133877129274085e-08,
+      "free_energy": 16.114844848112504,
       "readiness_score": 65,
       "covariates": {
         "pop_65plus": 6.0,
         "urbanization": 67,
         "health_exp": 8.3,
         "beds": 2.3
+      },
+      "spatial_metrics": {
+        "wasserstein_2_weighted": 21.614191784156045,
+        "coordinates": [
+          -30,
+          25
+        ]
       }
     }
   ]
