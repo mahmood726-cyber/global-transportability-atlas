@@ -1,30 +1,28 @@
 # Global Transportability Atlas
 
-An interactive HTML dashboard and research pipeline for assessing the transportability of clinical prognostic models across 204 countries using GBD 2023 data.
+[![ci](https://github.com/mahmood726-cyber/global-transportability-atlas/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/mahmood726-cyber/global-transportability-atlas/actions/workflows/ci.yml) [![codeql](https://github.com/mahmood726-cyber/global-transportability-atlas/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/mahmood726-cyber/global-transportability-atlas/actions/workflows/codeql.yml) [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![python: 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+
+An interactive HTML dashboard and rebuildable research artifact for country-level transportability scoring based on local F-drive transportability outputs and World Bank country metadata.
 
 ## Features
-- **TruthCert V4 Pipeline:** Proof-carrying research artifact with end-to-end cryptographic signing.
-- **Methodological Hardening:** 
-  - **DML Cross-Fitting:** Orthogonalized nuisance estimation on split-sample folds.
-  - **Conformal Validity:** Exchangeable calibration set ($n=1000$) for finite-sample coverage.
-  - **Stochastic Sensitivity:** Monte Carlo uncertainty propagation (N=100) reflecting GBD uncertainty.
-  - **Spatial Manifold:** Spatially-weighted Wasserstein-2 (Haversine) for regional spillover.
-- **GBD 2023 Integration:** Uses the latest IHME covariates (1980-2023).
+- **Source-backed rebuild:** `core/pipeline.py` rebuilds `data/atlas_results.json` from `transportability_ma/output/global_transportability_matrix.csv` plus World Bank country metadata when those local sources are available.
+- **Fail-closed input discovery:** the pipeline searches candidate local roots and raises a clear error if the matrix or country metadata are missing instead of silently falling back to placeholder data.
+- **Geographic dashboard shell:** the frontend renders source-backed country markers, effect ratios, transportability scores, and priority scores using coordinates resolved from local World Bank metadata.
 
-## Verification (TruthCert V4)
-The current research package is verified by the following signatures:
-- **Input Hash:** `SHA256:f21c868682abeb775237aab33ccf0496d5d029a23b17a03a1fedea79fe5aa882`
-- **Output Hash:** `SHA256:801bef7987881e902e09fbd8ec0ce3a49c46df413e69e83b53c0d88be32e9ad4`
-- **Composition Hash:** `SHA256:f7c09271faf5113a7aab3ef54000e8cfdb9b488ace6a479365b746df8c7ec3dc`
+## Verification
+- `python -m pytest -q`
+- `python core/pipeline.py`
+
+## Local Inputs
+- `GLOBAL_TRANSPORTABILITY_MATRIX`
+- `WORLD_BANK_COUNTRIES_CSV`
+- `WORLD_BANK_WDI_COUNTRY_CSV`
+
+If these environment variables are unset, the pipeline searches common local candidate roots on available drives.
 
 ## Project Structure
-- `core/`: Python pipeline (DML, Conformal, Spatial Math).
-- `data/`: `atlas_results.json` containing signed transportability metrics.
-- `index.html`: Interactive dashboard (servable via GitHub Pages).
-- `app.js`: Frontend logic for map and charts.
-- `E156.md`: Submission-ready micro-paper protocol.
-
-## Target Journals
-- *The Lancet Global Health*
-- *Statistics in Medicine*
-- *Journal of Clinical Epidemiology*
+- `core/`: Python rebuild pipeline and unit tests.
+- `data/`: generated `atlas_results.json`.
+- `index.html`: dashboard shell.
+- `app.js`: frontend logic for map and charts.
+- `E156.md`: submission-oriented project note.
