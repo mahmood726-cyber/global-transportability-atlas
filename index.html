@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Transportability Atlas | GBD 2023</title>
+    <title>Global Transportability Atlas | Local Source Rebuild</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -14,7 +14,7 @@
         <aside class="sidebar">
             <header>
                 <h1>Global Transportability Atlas</h1>
-                <p class="subtitle">GBD 2023 (1980-2023) Covariates</p>
+                <p class="subtitle">Rebuilt from local F-drive transportability outputs and World Bank country metadata</p>
             </header>
 
             <div class="stats-card">
@@ -27,9 +27,9 @@
                 <div class="mode-selector">
                     <label for="analysisMode">Analysis Mode:</label>
                     <select id="analysisMode">
-                        <option value="recalibrated_hr">Standard</option>
-                        <option value="causal_hr">Causal AWT</option>
-                        <option value="dml_hr">DML-Debiased</option>
+                        <option value="effect_ratio">Effect Ratio</option>
+                        <option value="transportability_score">Transportability Score</option>
+                        <option value="priority_score">Priority Score</option>
                     </select>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             </div>
 
             <footer class="sidebar-footer">
-                <p>TruthCert: GBD-2023-V4 (Hardened)</p>
+                <p>TruthCert: local transportability matrix rebuild</p>
             </footer>
         </aside>
 
