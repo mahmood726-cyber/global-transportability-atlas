@@ -1,434 +1,825 @@
 {
   "audit": {
-    "ihme_version": "GBD 2023 (v1.0)",
-    "timestamp": "2026-04-12T04:45:28.455783",
-    "methodology": "TruthCert Transportability Pipeline V4 (Spatial & Micro-Paper Ready)",
-    "determinism_seed": 42,
-    "hash": "SHA256:f7c09271faf5113a7aab3ef54000e8cfdb9b488ace6a479365b746df8c7ec3dc",
-    "signatures": {
-      "input_data_hash": "SHA256:f21c868682abeb775237aab33ccf0496d5d029a23b17a03a1fedea79fe5aa882",
-      "output_data_hash": "SHA256:801bef7987881e902e09fbd8ec0ce3a49c46df413e69e83b53c0d88be32e9ad4",
-      "composition_hash": "SHA256:f7c09271faf5113a7aab3ef54000e8cfdb9b488ace6a479365b746df8c7ec3dc"
+    "timestamp": "2026-05-25T10:02:54.466809",
+    "methodology": "Local transportability matrix rebuild from F-drive source outputs",
+    "source_files": {
+      "global_transportability_matrix": "F:\\transportability_ma\\output\\global_transportability_matrix.csv",
+      "world_bank_catalog": "F:\\WorldBankData\\catalogs\\countries.csv",
+      "world_bank_wdi_country": "F:\\WorldBankData\\bulk_downloads\\WDI_CSV\\WDICountry.csv"
     },
-    "hardening": {
-      "dml_cross_fitting": true,
-      "conformal_exchangeability": "Fixed Calibration Set (n=1000)",
-      "uncertainty_propagation": "Monte Carlo Stochastic Sensitivity (N=100)",
-      "spatial_awareness": "Spatially-Weighted Wasserstein-2 (Haversine)"
+    "country_count": 20,
+    "matrix_row_count": 40,
+    "hash": "SHA256:f7be3a7d3caf2636c2702f48e58ca7af17edc7fc3688050f748c07af0100d827",
+    "signatures": {
+      "payload_hash": "SHA256:f7be3a7d3caf2636c2702f48e58ca7af17edc7fc3688050f748c07af0100d827"
     }
+  },
+  "reference_profile": {
+    "label": "Matrix Mean",
+    "age_65up": 12.95,
+    "life_exp": 75.175,
+    "hexp_pc": 2929.5,
+    "physicians": 2.085
   },
   "map_data": [
     {
-      "iso3": "USA",
-      "smd_avg": 0.0,
-      "constancy_avicenna": 1.0,
-      "dissonance_razi": 0.0,
-      "verification_bound_haytham": [
-        0.82,
-        0.82
+      "iso3": "AUS",
+      "country_name": "Australia",
+      "region": "East Asia & Pacific",
+      "transportability_score": 0.7370036030456155,
+      "transport_propensity": 0.7370036030456155,
+      "evidence_gap": 0.2629963969543845,
+      "priority_score_raw": 5.254720534723179,
+      "priority_score": 57.350431221035635,
+      "effect_ratio": 0.6035381900499106,
+      "effect_ci": [
+        0.5002046252381761,
+        0.7282186698599158
       ],
-      "transport_propensity": 1.0,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.82,
-      "causal_hr": 0.82,
-      "dml_hr": 0.82,
-      "hr_ci": [
-        0.7434521010782151,
-        0.9044294837889763
+      "transported_effect": -0.504945959502363,
+      "e_value": 2.7007788170499447,
+      "sexes": [
+        "F",
+        "M"
       ],
-      "conformal_ci": [
-        0.009596548557128808,
-        70.06685747455595
-      ],
-      "proximal_bound": [
-        0.82,
-        0.82
-      ],
-      "uncertainty": {
-        "dml_hr_std": 1.8518691260127076e-07,
-        "robustness_score": 0.9999998148131216,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.2195121951219512,
-      "rd_e_value": 1.1341640786499874,
-      "fisher_stability": 1.0,
-      "shapley_attribution": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "tda_bottleneck": 0.0,
-      "quantum_entropy": 0.0,
-      "cusp_potential": 0.0,
-      "free_energy": -4.4479008317283055,
-      "readiness_score": 95,
+      "sex_row_count": 2,
+      "readiness_score": 73.70036030456156,
       "covariates": {
-        "pop_65plus": 16.5,
-        "urbanization": 82,
-        "health_exp": 16.7,
-        "beds": 2.8
+        "age_65up": 16.0,
+        "life_exp": 83.0,
+        "hexp_pc": 6500.0,
+        "physicians": 3.8,
+        "stability": 1.1,
+        "diabetes_prev": 6.0,
+        "age_dependency": 54.0,
+        "population": 25000000.0
       },
       "spatial_metrics": {
-        "wasserstein_2_weighted": 0.0,
         "coordinates": [
-          38,
-          -97
-        ]
-      }
-    },
-    {
-      "iso3": "IND",
-      "smd_avg": 2.50375,
-      "constancy_avicenna": 0.4319027095956365,
-      "dissonance_razi": 0.5,
-      "verification_bound_haytham": [
-        0.5459575501226024,
-        1.0923242615368278
-      ],
-      "transport_propensity": 0.333000333000333,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.40081674997744,
-      "causal_hr": 0.8651090501876971,
-      "dml_hr": 0.8191409058297152,
-      "hr_ci": [
-        0.7426732042905051,
-        0.9034819348902485
-      ],
-      "conformal_ci": [
-        0.0022020204327733747,
-        304.71643842034354
-      ],
-      "proximal_bound": [
-        0.0404473241891589,
-        16.58927597943234
-      ],
-      "uncertainty": {
-        "dml_hr_std": 0.00045381858437910076,
-        "robustness_score": 0.9995463872735062,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.1048116033735575,
-      "rd_e_value": 6.815411807187495,
-      "fisher_stability": 0.27543106683403695,
-      "shapley_attribution": [
-        0.0003409147570658201,
-        0.00013765458403860434,
-        0.0004012484683678466,
-        0.0001684072038770159
-      ],
-      "tda_bottleneck": 47.0,
-      "quantum_entropy": 1.349053931162194,
-      "cusp_potential": 5.350811614042742e-07,
-      "free_energy": 46.955983915520534,
-      "readiness_score": 45,
-      "covariates": {
-        "pop_65plus": 6.8,
-        "urbanization": 35,
-        "health_exp": 3.0,
-        "beds": 0.5
-      },
-      "spatial_metrics": {
-        "wasserstein_2_weighted": 52.87486471331941,
-        "coordinates": [
-          20,
-          77
-        ]
-      }
-    },
-    {
-      "iso3": "NGA",
-      "smd_avg": 2.44625,
-      "constancy_avicenna": 0.43899866599280374,
-      "dissonance_razi": 0.57,
-      "verification_bound_haytham": [
-        0.5488028320193017,
-        1.0916419233823411
-      ],
-      "transport_propensity": 0.3381805884342239,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.38187920459384705,
-      "causal_hr": 0.8151983742975406,
-      "dml_hr": 0.8202223777008214,
-      "hr_ci": [
-        0.7436537195768842,
-        0.9046747581172203
-      ],
-      "conformal_ci": [
-        0.0022323547686948246,
-        301.3699965236842
-      ],
-      "proximal_bound": [
-        0.045909399159067964,
-        14.654183265395789
-      ],
-      "uncertainty": {
-        "dml_hr_std": 0.00029630284042475683,
-        "robustness_score": 0.9997037849289421,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.1053551471116174,
-      "rd_e_value": 6.68257333995979,
-      "fisher_stability": 0.2812288858625536,
-      "shapley_attribution": [
-        0.00011751729763231561,
-        2.1289365513100654e-05,
-        9.15442717063328e-05,
-        4.0804617233442916e-05
-      ],
-      "tda_bottleneck": 30.0,
-      "quantum_entropy": 1.3369273425222545,
-      "cusp_potential": -6.478191217628111e-08,
-      "free_energy": 31.817908521346872,
-      "readiness_score": 38,
-      "covariates": {
-        "pop_65plus": 2.7,
-        "urbanization": 52,
-        "health_exp": 3.8,
-        "beds": 0.5
-      },
-      "spatial_metrics": {
-        "wasserstein_2_weighted": 37.724427038721,
-        "coordinates": [
-          9,
-          8
-        ]
-      }
-    },
-    {
-      "iso3": "KEN",
-      "smd_avg": 2.48125,
-      "constancy_avicenna": 0.4325201054267756,
-      "dissonance_razi": 0.53,
-      "verification_bound_haytham": [
-        0.5464409101719265,
-        1.0908249536807217
-      ],
-      "transport_propensity": 0.3350083752093802,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.3850234880150954,
-      "causal_hr": 0.8302180685724312,
-      "dml_hr": 0.8186329319263241,
-      "hr_ci": [
-        0.7422126503078599,
-        0.9029216585790019
-      ],
-      "conformal_ci": [
-        0.002203028447889107,
-        304.19937512673613
-      ],
-      "proximal_bound": [
-        0.042467758640950204,
-        15.780439059670023
-      ],
-      "uncertainty": {
-        "dml_hr_std": 0.0005825739355678161,
-        "robustness_score": 0.9994177652592166,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.1056532972557556,
-      "rd_e_value": 6.765485324738794,
-      "fisher_stability": 0.2759334310597568,
-      "shapley_attribution": [
-        0.0007415766394622485,
-        0.00023836391982715136,
-        0.0005341117462793575,
-        0.00015449513322130176
-      ],
-      "tda_bottleneck": 54.0,
-      "quantum_entropy": 1.3358682245795088,
-      "cusp_potential": 1.3269022069987803e-06,
-      "free_energy": 54.44534169805444,
-      "readiness_score": 42,
-      "covariates": {
-        "pop_65plus": 2.5,
-        "urbanization": 28,
-        "health_exp": 4.6,
-        "beds": 1.4
-      },
-      "spatial_metrics": {
-        "wasserstein_2_weighted": 60.36314450988741,
-        "coordinates": [
-          0,
-          38
-        ]
+          -35.282,
+          149.129
+        ],
+        "region": "East Asia & Pacific"
       }
     },
     {
       "iso3": "BRA",
-      "smd_avg": 1.0025,
-      "constancy_avicenna": 0.7880189597361713,
-      "dissonance_razi": 0.23,
-      "verification_bound_haytham": [
-        0.6505917644978381,
-        0.9886490692184025
+      "country_name": "Brazil",
+      "region": "Latin America & Caribbean",
+      "transportability_score": 0.778324936400265,
+      "transport_propensity": 0.778324936400265,
+      "evidence_gap": 0.221675063599735,
+      "priority_score_raw": 3.8216085000156226,
+      "priority_score": 41.70933429962459,
+      "effect_ratio": 0.7325861679573056,
+      "effect_ci": [
+        0.6188726932077458,
+        0.867193688415354
       ],
-      "transport_propensity": 0.5875440658049353,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.5953231338663968,
-      "causal_hr": 0.843053128261852,
-      "dml_hr": 0.8196204168581203,
-      "hr_ci": [
-        0.7431079524387464,
-        0.9040108177096284
+      "transported_effect": -0.3111743095728255,
+      "e_value": 2.0715250858143452,
+      "sexes": [
+        "F",
+        "M"
       ],
-      "conformal_ci": [
-        0.004206633698757898,
-        159.69482389898522
-      ],
-      "proximal_bound": [
-        0.448692961671438,
-        1.4971877990424058
-      ],
-      "uncertainty": {
-        "dml_hr_std": 0.00018003208958466488,
-        "robustness_score": 0.9998200003161346,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.1525535743386364,
-      "rd_e_value": 3.4085879266356653,
-      "fisher_stability": 0.6501908310089012,
-      "shapley_attribution": [
-        0.000205783753230371,
-        1.3610036589310248e-05,
-        0.00019598452688606756,
-        4.763512806258585e-05
-      ],
-      "tda_bottleneck": 7.0,
-      "quantum_entropy": 1.1892122919328776,
-      "cusp_potential": 1.2391169616536554e-07,
-      "free_energy": 6.519592878693557,
-      "readiness_score": 72,
+      "sex_row_count": 2,
+      "readiness_score": 77.8324936400265,
       "covariates": {
-        "pop_65plus": 10.2,
-        "urbanization": 87,
-        "health_exp": 9.5,
-        "beds": 2.1
+        "age_65up": 10.0,
+        "life_exp": 76.0,
+        "hexp_pc": 1000.0,
+        "physicians": 2.3,
+        "stability": -0.2,
+        "diabetes_prev": 9.0,
+        "age_dependency": 44.0,
+        "population": 210000000.0
       },
       "spatial_metrics": {
-        "wasserstein_2_weighted": 11.791771474155148,
         "coordinates": [
-          -14,
-          -51
-        ]
+          -15.7801,
+          -47.9292
+        ],
+        "region": "Latin America & Caribbean"
+      }
+    },
+    {
+      "iso3": "CAN",
+      "country_name": "Canada",
+      "region": "North America",
+      "transportability_score": 0.797932033293101,
+      "transport_propensity": 0.797932033293101,
+      "evidence_gap": 0.20206796670689897,
+      "priority_score_raw": 4.007710987749659,
+      "priority_score": 43.74047141763628,
+      "effect_ratio": 0.6184204128672015,
+      "effect_ci": [
+        0.5278269968133291,
+        0.7245628006141844
+      ],
+      "transported_effect": -0.480586773089418,
+      "e_value": 2.61662879603864,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 79.7932033293101,
+      "covariates": {
+        "age_65up": 18.0,
+        "life_exp": 82.0,
+        "hexp_pc": 6000.0,
+        "physicians": 2.7,
+        "stability": 1.2,
+        "diabetes_prev": 7.0,
+        "age_dependency": 52.0,
+        "population": 38000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          45.4215,
+          -75.6919
+        ],
+        "region": "North America"
       }
     },
     {
       "iso3": "CHN",
-      "smd_avg": 1.4437499999999999,
-      "constancy_avicenna": 0.6387098061914932,
-      "dissonance_razi": 0.1,
-      "verification_bound_haytham": [
-        0.6726011107411887,
-        0.9648074641355995
+      "country_name": "China",
+      "region": "East Asia & Pacific",
+      "transportability_score": 0.7581739767756345,
+      "transport_propensity": 0.7581739767756345,
+      "evidence_gap": 0.24182602322436553,
+      "priority_score_raw": 4.527604394089763,
+      "priority_score": 49.41462874827893,
+      "effect_ratio": 0.7385119793764103,
+      "effect_ci": [
+        0.6002299190896354,
+        0.9086517121800055
       ],
-      "transport_propensity": 0.6430868167202572,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.6341619352876683,
-      "causal_hr": 1.0502979644865258,
-      "dml_hr": 0.8187042874383941,
-      "hr_ci": [
-        0.742277344704655,
-        0.9030003610533274
+      "transported_effect": -0.30311795591489854,
+      "e_value": 2.047048639363965,
+      "sexes": [
+        "F",
+        "M"
       ],
-      "conformal_ci": [
-        0.0031364854398125046,
-        213.70311551966824
-      ],
-      "proximal_bound": [
-        0.2664555207710824,
-        2.5155294524591874
-      ],
-      "uncertainty": {
-        "dml_hr_std": 0.0004267928718006324,
-        "robustness_score": 0.9995733892026466,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.1351937895556021,
-      "rd_e_value": 4.4109366994720896,
-      "fisher_stability": 0.46919445177560776,
-      "shapley_attribution": [
-        0.0002797539662779862,
-        0.0001321060396312713,
-        0.0008781166163725679,
-        0.00029141038153956907
-      ],
-      "tda_bottleneck": 17.0,
-      "quantum_entropy": 1.2050509532759952,
-      "cusp_potential": 1.5529564187825137e-06,
-      "free_energy": 16.599671067401502,
-      "readiness_score": 85,
+      "sex_row_count": 2,
+      "readiness_score": 75.81739767756345,
       "covariates": {
-        "pop_65plus": 13.5,
-        "urbanization": 65,
-        "health_exp": 5.4,
-        "beds": 4.3
+        "age_65up": 13.0,
+        "life_exp": 77.0,
+        "hexp_pc": 600.0,
+        "physicians": 2.2,
+        "stability": -0.5,
+        "diabetes_prev": 9.0,
+        "age_dependency": 44.0,
+        "population": 1400000000.0
       },
       "spatial_metrics": {
-        "wasserstein_2_weighted": 22.16429113428888,
         "coordinates": [
-          35,
-          105
-        ]
+          40.0495,
+          116.286
+        ],
+        "region": "East Asia & Pacific"
+      }
+    },
+    {
+      "iso3": "DEU",
+      "country_name": "Germany",
+      "region": "Europe & Central Asia",
+      "transportability_score": 0.950168135291961,
+      "transport_propensity": 0.950168135291961,
+      "evidence_gap": 0.04983186470803902,
+      "priority_score_raw": 0.9411898677783812,
+      "priority_score": 10.27221988710447,
+      "effect_ratio": 0.6628619088573477,
+      "effect_ci": [
+        0.5216026939998618,
+        0.8423766120619828
+      ],
+      "transported_effect": -0.411188592756482,
+      "e_value": 2.385038964106055,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 95.0168135291961,
+      "covariates": {
+        "age_65up": 22.0,
+        "life_exp": 81.0,
+        "hexp_pc": 7000.0,
+        "physicians": 4.4,
+        "stability": 1.0,
+        "diabetes_prev": 10.0,
+        "age_dependency": 55.0,
+        "population": 83000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          52.5235,
+          13.4115
+        ],
+        "region": "Europe & Central Asia"
+      }
+    },
+    {
+      "iso3": "EGY",
+      "country_name": "Egypt, Arab Republic of",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "transportability_score": 0.6844808367416595,
+      "transport_propensity": 0.6844808367416595,
+      "evidence_gap": 0.3155191632583405,
+      "priority_score_raw": 4.968854890803402,
+      "priority_score": 54.23047120760708,
+      "effect_ratio": 0.76059410153843,
+      "effect_ci": [
+        0.41125031061293815,
+        1.4066941042131618
+      ],
+      "transported_effect": -0.2736554385293155,
+      "e_value": 1.9583905355629099,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 68.44808367416594,
+      "covariates": {
+        "age_65up": 5.0,
+        "life_exp": 72.5,
+        "hexp_pc": 160.0,
+        "physicians": 0.7,
+        "stability": -1.2,
+        "diabetes_prev": 15.0,
+        "age_dependency": 64.0,
+        "population": 110000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          30.0982,
+          31.2461
+        ],
+        "region": "Middle East, North Africa, Afghanistan & Pakistan"
+      }
+    },
+    {
+      "iso3": "ESP",
+      "country_name": "Spain",
+      "region": "Europe & Central Asia",
+      "transportability_score": 0.9314025860596631,
+      "transport_propensity": 0.9314025860596631,
+      "evidence_gap": 0.06859741394033692,
+      "priority_score_raw": 1.2390999870054926,
+      "priority_score": 13.523634246799821,
+      "effect_ratio": 0.6692502119839804,
+      "effect_ci": [
+        0.5514931137046242,
+        0.8121512945680994
+      ],
+      "transported_effect": -0.4015972798331555,
+      "e_value": 2.3544229082589947,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 93.14025860596631,
+      "covariates": {
+        "age_65up": 20.0,
+        "life_exp": 83.0,
+        "hexp_pc": 3500.0,
+        "physicians": 4.1,
+        "stability": 0.3,
+        "diabetes_prev": 9.0,
+        "age_dependency": 54.0,
+        "population": 47000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          40.4167,
+          -3.70327
+        ],
+        "region": "Europe & Central Asia"
+      }
+    },
+    {
+      "iso3": "ETH",
+      "country_name": "Ethiopia",
+      "region": "Sub-Saharan Africa",
+      "transportability_score": 0.6958594812664585,
+      "transport_propensity": 0.6958594812664585,
+      "evidence_gap": 0.30414051873354153,
+      "priority_score_raw": 4.845142183363344,
+      "priority_score": 52.88026103518677,
+      "effect_ratio": 0.7571418788292903,
+      "effect_ci": [
+        0.4657300339509446,
+        1.2308929699335853
+      ],
+      "transported_effect": -0.27820462061033,
+      "e_value": 1.971809218086425,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 69.58594812664585,
+      "covariates": {
+        "age_65up": 3.0,
+        "life_exp": 65.0,
+        "hexp_pc": 80.0,
+        "physicians": 0.1,
+        "stability": -1.5,
+        "diabetes_prev": 4.0,
+        "age_dependency": 84.0,
+        "population": 120000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          9.02274,
+          38.7468
+        ],
+        "region": "Sub-Saharan Africa"
+      }
+    },
+    {
+      "iso3": "FRA",
+      "country_name": "France",
+      "region": "Europe & Central Asia",
+      "transportability_score": 0.849895643379112,
+      "transport_propensity": 0.849895643379112,
+      "evidence_gap": 0.15010435662088795,
+      "priority_score_raw": 2.9920507583178018,
+      "priority_score": 32.655476174394174,
+      "effect_ratio": 0.6314025136596826,
+      "effect_ci": [
+        0.5382161536834659,
+        0.7407230933656256
+      ],
+      "transported_effect": -0.459811721777031,
+      "e_value": 2.5470159489158553,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 84.9895643379112,
+      "covariates": {
+        "age_65up": 21.0,
+        "life_exp": 82.0,
+        "hexp_pc": 5500.0,
+        "physicians": 3.3,
+        "stability": 0.4,
+        "diabetes_prev": 6.0,
+        "age_dependency": 62.0,
+        "population": 67000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          48.8566,
+          2.35097
+        ],
+        "region": "Europe & Central Asia"
+      }
+    },
+    {
+      "iso3": "GBR",
+      "country_name": "United Kingdom",
+      "region": "Europe & Central Asia",
+      "transportability_score": 0.9111404454212335,
+      "transport_propensity": 0.9111404454212335,
+      "evidence_gap": 0.08885955457876649,
+      "priority_score_raw": 1.7136041990558974,
+      "priority_score": 18.702410358196207,
+      "effect_ratio": 0.6470536608858779,
+      "effect_ci": [
+        0.5817089399476503,
+        0.7197387066175994
+      ],
+      "transported_effect": -0.435326049920591,
+      "e_value": 2.46412304727736,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 91.11404454212335,
+      "covariates": {
+        "age_65up": 19.0,
+        "life_exp": 81.0,
+        "hexp_pc": 5000.0,
+        "physicians": 2.8,
+        "stability": 0.7,
+        "diabetes_prev": 8.0,
+        "age_dependency": 56.0,
+        "population": 67000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          51.5002,
+          -0.126236
+        ],
+        "region": "Europe & Central Asia"
+      }
+    },
+    {
+      "iso3": "IDN",
+      "country_name": "Indonesia",
+      "region": "East Asia & Pacific",
+      "transportability_score": 0.7469910476149,
+      "transport_propensity": 0.7469910476149,
+      "evidence_gap": 0.2530089523851,
+      "priority_score_raw": 4.33763360477778,
+      "priority_score": 47.34127268406026,
+      "effect_ratio": 0.7418212106575551,
+      "effect_ci": [
+        0.5428856822365672,
+        1.013654856975291
+      ],
+      "transported_effect": -0.298647020836437,
+      "e_value": 2.033382817690165,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 74.69910476148999,
+      "covariates": {
+        "age_65up": 6.0,
+        "life_exp": 71.5,
+        "hexp_pc": 120.0,
+        "physicians": 0.6,
+        "stability": -0.4,
+        "diabetes_prev": 6.0,
+        "age_dependency": 47.0,
+        "population": 270000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          -6.19752,
+          106.83
+        ],
+        "region": "East Asia & Pacific"
+      }
+    },
+    {
+      "iso3": "IND",
+      "country_name": "India",
+      "region": "South Asia",
+      "transportability_score": 0.581807736028418,
+      "transport_propensity": 0.581807736028418,
+      "evidence_gap": 0.41819226397158205,
+      "priority_score_raw": 7.025284101474786,
+      "priority_score": 76.67450057666862,
+      "effect_ratio": 0.7924651627562047,
+      "effect_ci": [
+        0.6262114722921185,
+        1.0028577596695079
+      ],
+      "transported_effect": -0.2326067328641615,
+      "e_value": 1.836752418387495,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 58.180773602841796,
+      "covariates": {
+        "age_65up": 7.0,
+        "life_exp": 70.0,
+        "hexp_pc": 200.0,
+        "physicians": 0.9,
+        "stability": -0.9,
+        "diabetes_prev": 10.0,
+        "age_dependency": 48.0,
+        "population": 1400000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          28.6353,
+          77.225
+        ],
+        "region": "South Asia"
+      }
+    },
+    {
+      "iso3": "ITA",
+      "country_name": "Italy",
+      "region": "Europe & Central Asia",
+      "transportability_score": 0.9672854175606416,
+      "transport_propensity": 0.9672854175606416,
+      "evidence_gap": 0.03271458243935843,
+      "priority_score_raw": 0.6007194380674287,
+      "priority_score": 6.556298967446452,
+      "effect_ratio": 0.6673352332280561,
+      "effect_ci": [
+        0.5506705811970224,
+        0.8087163700292324
+      ],
+      "transported_effect": -0.40446276078404453,
+      "e_value": 2.362988809271765,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 96.72854175606416,
+      "covariates": {
+        "age_65up": 24.0,
+        "life_exp": 83.0,
+        "hexp_pc": 4000.0,
+        "physicians": 4.0,
+        "stability": 0.5,
+        "diabetes_prev": 8.0,
+        "age_dependency": 57.0,
+        "population": 59000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          41.8955,
+          12.4823
+        ],
+        "region": "Europe & Central Asia"
+      }
+    },
+    {
+      "iso3": "JPN",
+      "country_name": "Japan",
+      "region": "East Asia & Pacific",
+      "transportability_score": 0.8564295490555041,
+      "transport_propensity": 0.8564295490555041,
+      "evidence_gap": 0.14357045094449594,
+      "priority_score_raw": 2.944159946566487,
+      "priority_score": 32.13279210636162,
+      "effect_ratio": 0.6330540545262124,
+      "effect_ci": [
+        0.5111468187265023,
+        0.7840358606760867
+      ],
+      "transported_effect": -0.45719946628760955,
+      "e_value": 2.53821837833604,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 85.64295490555041,
+      "covariates": {
+        "age_65up": 30.0,
+        "life_exp": 84.0,
+        "hexp_pc": 4500.0,
+        "physicians": 2.5,
+        "stability": 1.0,
+        "diabetes_prev": 7.0,
+        "age_dependency": 70.0,
+        "population": 120000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          35.67,
+          139.77
+        ],
+        "region": "East Asia & Pacific"
+      }
+    },
+    {
+      "iso3": "KEN",
+      "country_name": "Kenya",
+      "region": "Sub-Saharan Africa",
+      "transportability_score": 0.6937008656287755,
+      "transport_propensity": 0.6937008656287755,
+      "evidence_gap": 0.30629913437122447,
+      "priority_score_raw": 4.66449076301154,
+      "priority_score": 50.90861729325857,
+      "effect_ratio": 0.7577955853119885,
+      "effect_ci": [
+        0.48776331116861416,
+        1.1773213277204164
+      ],
+      "transported_effect": -0.2773416060783845,
+      "e_value": 1.969447942577665,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 69.37008656287756,
+      "covariates": {
+        "age_65up": 3.0,
+        "life_exp": 65.5,
+        "hexp_pc": 150.0,
+        "physicians": 0.2,
+        "stability": -1.1,
+        "diabetes_prev": 5.0,
+        "age_dependency": 80.0,
+        "population": 54000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          -1.27975,
+          36.8126
+        ],
+        "region": "Sub-Saharan Africa"
+      }
+    },
+    {
+      "iso3": "MEX",
+      "country_name": "Mexico",
+      "region": "Latin America & Caribbean",
+      "transportability_score": 0.7096528670510376,
+      "transport_propensity": 0.7096528670510376,
+      "evidence_gap": 0.2903471329489624,
+      "priority_score_raw": 4.684990972701257,
+      "priority_score": 51.13235818643413,
+      "effect_ratio": 0.7529780390264827,
+      "effect_ci": [
+        0.5659896757753545,
+        1.001742525567206
+      ],
+      "transported_effect": -0.283719216247005,
+      "e_value": 1.9886540772433,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 70.96528670510376,
+      "covariates": {
+        "age_65up": 8.0,
+        "life_exp": 75.0,
+        "hexp_pc": 1200.0,
+        "physicians": 2.4,
+        "stability": -0.6,
+        "diabetes_prev": 13.0,
+        "age_dependency": 50.0,
+        "population": 130000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          19.427,
+          -99.1276
+        ],
+        "region": "Latin America & Caribbean"
+      }
+    },
+    {
+      "iso3": "NGA",
+      "country_name": "Nigeria",
+      "region": "Sub-Saharan Africa",
+      "transportability_score": 0.2136083847941495,
+      "transport_propensity": 0.2136083847941495,
+      "evidence_gap": 0.7863916152058505,
+      "priority_score_raw": 9.162477810272843,
+      "priority_score": 100.0,
+      "effect_ratio": 0.918144372470458,
+      "effect_ci": [
+        0.6212225349127037,
+        1.356984077883831
+      ],
+      "transported_effect": -0.08540063224070091,
+      "e_value": 1.4000221475864851,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 21.36083847941495,
+      "covariates": {
+        "age_65up": 3.0,
+        "life_exp": 54.0,
+        "hexp_pc": 100.0,
+        "physicians": 0.4,
+        "stability": -1.8,
+        "diabetes_prev": 6.0,
+        "age_dependency": 88.0,
+        "population": 210000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          9.05804,
+          7.48906
+        ],
+        "region": "Sub-Saharan Africa"
+      }
+    },
+    {
+      "iso3": "USA",
+      "country_name": "United States",
+      "region": "North America",
+      "transportability_score": 0.7534953063048135,
+      "transport_propensity": 0.7534953063048135,
+      "evidence_gap": 0.24650469369518646,
+      "priority_score_raw": 5.628581790045689,
+      "priority_score": 61.43078222503306,
+      "effect_ratio": 0.6075306960665563,
+      "effect_ci": [
+        0.4687042339644507,
+        0.7874764508551656
+      ],
+      "transported_effect": -0.49835257653933596,
+      "e_value": 2.680463820390455,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 75.34953063048135,
+      "covariates": {
+        "age_65up": 17.0,
+        "life_exp": 78.5,
+        "hexp_pc": 12000.0,
+        "physicians": 2.6,
+        "stability": 0.8,
+        "diabetes_prev": 10.0,
+        "age_dependency": 53.0,
+        "population": 330000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          38.8895,
+          -77.032
+        ],
+        "region": "North America"
+      }
+    },
+    {
+      "iso3": "VNM",
+      "country_name": "Viet Nam",
+      "region": "East Asia & Pacific",
+      "transportability_score": 0.8867827029308964,
+      "transport_propensity": 0.8867827029308964,
+      "evidence_gap": 0.11321729706910355,
+      "priority_score_raw": 1.9956954119862569,
+      "priority_score": 21.78117593636855,
+      "effect_ratio": 0.7014990563483408,
+      "effect_ci": [
+        0.509718604607565,
+        0.9654364616266727
+      ],
+      "transported_effect": -0.3545357246317725,
+      "e_value": 2.205809785470645,
+      "sexes": [
+        "F",
+        "M"
+      ],
+      "sex_row_count": 2,
+      "readiness_score": 88.67827029308964,
+      "covariates": {
+        "age_65up": 8.0,
+        "life_exp": 75.5,
+        "hexp_pc": 180.0,
+        "physicians": 0.8,
+        "stability": 0.2,
+        "diabetes_prev": 6.0,
+        "age_dependency": 45.0,
+        "population": 98000000.0
+      },
+      "spatial_metrics": {
+        "coordinates": [
+          21.0069,
+          105.825
+        ],
+        "region": "East Asia & Pacific"
       }
     },
     {
       "iso3": "ZAF",
-      "smd_avg": 1.3624999999999998,
-      "constancy_avicenna": 0.6749346157091032,
-      "dissonance_razi": 0.3,
-      "verification_bound_haytham": [
-        0.6060067731895008,
-        1.0335455322681775
+      "country_name": "South Africa",
+      "region": "Sub-Saharan Africa",
+      "transportability_score": 0.40229025421318654,
+      "transport_propensity": 0.40229025421318654,
+      "evidence_gap": 0.5977097457868135,
+      "priority_score_raw": 7.560328499203967,
+      "priority_score": 82.51401701325193,
+      "effect_ratio": 0.8514319978766078,
+      "effect_ci": [
+        0.6236201696893667,
+        1.162464721705926
       ],
-      "transport_propensity": 0.47846889952153115,
-      "hr_initial": 0.82,
-      "recalibrated_hr": 0.5099457463013164,
-      "causal_hr": 0.8122826549698975,
-      "dml_hr": 0.8197761527288392,
-      "hr_ci": [
-        0.7432491501952089,
-        0.9041825885793379
+      "transported_effect": -0.16083564363443198,
+      "e_value": 1.62619995468853,
+      "sexes": [
+        "F",
+        "M"
       ],
-      "conformal_ci": [
-        0.0033524264010185534,
-        200.46165379759464
-      ],
-      "proximal_bound": [
-        0.29707030219354746,
-        2.262201693069453
-      ],
-      "uncertainty": {
-        "dml_hr_std": 0.0002018259822074533,
-        "robustness_score": 0.9997982147433002,
-        "mc_iterations": 100
-      },
-      "e_statistic": 1.1372623451033705,
-      "rd_e_value": 4.225071846917211,
-      "fisher_stability": 0.5093594804533299,
-      "shapley_attribution": [
-        0.0001448452200118755,
-        1.724347857284232e-05,
-        9.656348000791699e-05,
-        1.4369565477368602e-05
-      ],
-      "tda_bottleneck": 15.0,
-      "quantum_entropy": 1.2148585433213557,
-      "cusp_potential": 4.133877129274085e-08,
-      "free_energy": 16.114844848112504,
-      "readiness_score": 65,
+      "sex_row_count": 2,
+      "readiness_score": 40.22902542131865,
       "covariates": {
-        "pop_65plus": 6.0,
-        "urbanization": 67,
-        "health_exp": 8.3,
-        "beds": 2.3
+        "age_65up": 6.0,
+        "life_exp": 64.0,
+        "hexp_pc": 800.0,
+        "physicians": 0.9,
+        "stability": -0.1,
+        "diabetes_prev": 11.0,
+        "age_dependency": 52.0,
+        "population": 60000000.0
       },
       "spatial_metrics": {
-        "wasserstein_2_weighted": 21.614191784156045,
         "coordinates": [
-          -30,
-          25
-        ]
+          -25.746,
+          28.1871
+        ],
+        "region": "Sub-Saharan Africa"
       }
     }
   ]
