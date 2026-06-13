@@ -3,9 +3,9 @@
     "timestamp": "2026-05-25T10:02:54.466809",
     "methodology": "Local transportability matrix rebuild from F-drive source outputs",
     "source_files": {
-      "global_transportability_matrix": "F:\\transportability_ma\\output\\global_transportability_matrix.csv",
-      "world_bank_catalog": "F:\\WorldBankData\\catalogs\\countries.csv",
-      "world_bank_wdi_country": "F:\\WorldBankData\\bulk_downloads\\WDI_CSV\\WDICountry.csv"
+      "global_transportability_matrix": "transportability_ma/output/global_transportability_matrix.csv",
+      "world_bank_catalog": "WorldBankData/catalogs/countries.csv",
+      "world_bank_wdi_country": "WorldBankData/bulk_downloads/WDI_CSV/WDICountry.csv"
     },
     "country_count": 20,
     "matrix_row_count": 40,
