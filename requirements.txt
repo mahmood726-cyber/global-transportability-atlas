@@ -2,4 +2,4 @@
 # Pin minimum versions; the CI workflow (.github/workflows/ci.yml) installs
 # these for both lint and test jobs.
 
-numpy>=1.24
+numpy>=2.5.0
